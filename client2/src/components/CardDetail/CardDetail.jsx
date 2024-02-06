@@ -30,7 +30,7 @@ const updatecoverCard=async()=>{
     }))
 
 
-    console.log("🚀 ~ updatecoverCard ~ data:", data)
+
 
     
   } catch (error) {
