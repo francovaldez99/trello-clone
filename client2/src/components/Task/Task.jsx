@@ -4,19 +4,24 @@ import { GoPencil } from "react-icons/go";
 import Modal from "../Modal/Modal";
 import CardDetail from "../CardDetail/CardDetail";
 
-function Task({ taskname, taskIid, index, idColumn }) {
+function Task({ taskname, taskIid, index, idColumn ,CardDetailId,listname,coverCard}) {
 const [cardDetailIsOpen,SetCardDetailIsOpen]=useState(false)
 
   return (
     <Draggable draggableId={`${taskIid}`} index={index} >
       {(provided) => (
         <div
-          className="group  bg-white  m-2 p-1 select-none shadow-cardShadow border-gray-100 h-[148px] rounded-3xl flex flex-col  hover:border-blue-500 hover:border"
+          className={`group  bg-white  m-2 p-1 select-none shadow-cardShadow border-gray-100 h-[${coverCard ? "290px": "148px"}] rounded-[8px] flex flex-col  hover:border-blue-500 hover:border`}
           {...provided.draggableProps}
           
           ref={provided.innerRef}
         >
-
+{
+  coverCard &&
+  <img
+  src={coverCard}
+  className="h-[130px] w-full rounded-[8px] object-cover "/>
+}
 
   <h3 
   className="font-semibold  w-[100px]  overflow-ellipsis  text-base  tracking-[-0.56px] flex-shrink row-span-1  py-1 ml-1" {...provided.dragHandleProps} >
@@ -31,7 +36,14 @@ const [cardDetailIsOpen,SetCardDetailIsOpen]=useState(false)
 
   </div>
         <Modal isOpen={cardDetailIsOpen}>
-          <CardDetail SetCardDetailIsOpen={SetCardDetailIsOpen}/>
+          <CardDetail SetCardDetailIsOpen={SetCardDetailIsOpen}
+           CardId={taskIid}
+           taskname={taskname}
+            listname={listname}
+             cardDetailIsOpen={cardDetailIsOpen}
+              CardDetailId={CardDetailId}
+              idColumn={idColumn}
+              coverCard={coverCard}/>
         </Modal>
 
 

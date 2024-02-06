@@ -3,6 +3,7 @@ const Project = require("./Project.model");
 const Board = require("./Board.model");
 const Column = require("./Column.model");
 const Card = require("./Card.model");
+const CardDetail = require("./CardDetail.model");
 
 function defineAssociations() {
   try {
@@ -21,6 +22,10 @@ function defineAssociations() {
 
     Card.belongsTo(Column);
     Column.hasMany(Card);
+
+    //cada card tiene un CardDetail
+    CardDetail.hasOne(Card);
+    Card.belongsTo(CardDetail)
     console.log(
       "🚀 ~ file: Associations.js:10 ~ defineAssociations ~ defineAssociations:"
     );

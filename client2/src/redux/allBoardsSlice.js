@@ -25,6 +25,18 @@ const allBoardsSlice = createSlice({
         state.boardDetail.Columns[indexCol].Cards.push(action.payload.Card)
       }
 
+    },
+    newCoverCard:(state,action) => {
+
+  
+      
+      let indexCol=state.boardDetail.Columns.findIndex((col)=>col.id===action.payload.idColumn)
+      let indexCard = state.boardDetail.Columns[indexCol].Cards.findIndex((card)=>card.id===action.payload.idCard)
+      if(indexCol===-1)return
+  
+        state.boardDetail.Columns[indexCol].Cards[indexCard].coverCard=action.payload.coverCard
+        
+      
     }
    , updateBoardOrder: (state, action) => {
       const { source, destination, type } = action.payload;
@@ -87,6 +99,6 @@ const allBoardsSlice = createSlice({
   },
 });
 
-export const { setAllBoards, setBoardDetail, updateBoardOrder,newColBoard ,newCard} =
+export const { setAllBoards, setBoardDetail, updateBoardOrder,newColBoard ,newCard,newCoverCard} =
   allBoardsSlice.actions;
 export default allBoardsSlice.reducer;

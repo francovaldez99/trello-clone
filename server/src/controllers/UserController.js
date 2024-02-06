@@ -7,6 +7,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Column = require("../models/Column.model");
 const Card = require("../models/Card.model");
+const CardDetail = require("../models/CardDetail.model");
 
 const registerController = async (req, res) => {
   try {
@@ -45,10 +46,13 @@ const registerController = async (req, res) => {
     // id	"CardName"	"orderCard"	"createdAt"	"updatedAt"	"ColumnId"
     for (let index = 0; index < todoTasks.length; index++) {
       const createTodo=async()=>{
+        const CardDetailNew=await  CardDetail.create({
+        })
         await Card.create({
           CardName:todoTasks[index],
           ColumnId:todoColumn.dataValues.id,
-          orderCard:index
+          orderCard:index,
+          CardDetailId:CardDetailNew.id
         })
       }
       createTodo()
@@ -64,10 +68,13 @@ const registerController = async (req, res) => {
 
 for (let index = 0; index < inProgressTask.length; index++) {
   const createTodo=async()=>{
+    const CardDetailNew=await  CardDetail.create({
+    })
     await Card.create({
       CardName:inProgressTask[index],
       ColumnId:inProgressColumn.dataValues.id,
-      orderCard:index
+      orderCard:index,
+      CardDetailId:CardDetailNew.id
     })
   }
   createTodo()
@@ -82,10 +89,13 @@ for (let index = 0; index < inProgressTask.length; index++) {
 const completedTask=["task completed - 1 ","task completed - 2","task completed - 3 "]
 for (let index = 0; index < completedTask.length; index++) {
   const createTodo=async()=>{
+    const CardDetailNew=await  CardDetail.create({
+    })
     await Card.create({
       CardName:completedTask[index],
       ColumnId:CompleteColumn.dataValues.id,
-      orderCard:index
+      orderCard:index,
+      CardDetailId:CardDetailNew.id
     })
   }
   createTodo()
@@ -102,10 +112,13 @@ for (let index = 0; index < completedTask.length; index++) {
     const importantTask=["important data 1","important data 2 ","important data 3 "]
     for (let index = 0; index < importantTask.length; index++) {
       const createTodo=async()=>{
+        const CardDetailNew=await  CardDetail.create({
+        })
         await Card.create({
           CardName:importantTask[index],
           ColumnId:ImportantColumn.dataValues.id,
-          orderCard:index
+          orderCard:index,
+          CardDetailId:CardDetailNew.id
         })
       }
       createTodo()

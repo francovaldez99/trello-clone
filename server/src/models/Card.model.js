@@ -12,10 +12,16 @@ CardName:{
   type:DataTypes.STRING,
   allowNull:false,  
 },
+coverCard:{
+type:DataTypes.STRING,
+defaultValue:""
+},
 orderCard:{
     type:DataTypes.INTEGER,
     allowNull:false,
 }
+},{
+
 })
 
 module.exports=Card

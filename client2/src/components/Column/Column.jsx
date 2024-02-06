@@ -36,6 +36,9 @@ function Column({ colName, tasks, idColumn, index }) {
                     taskname={task.CardName}
                     index={index}
                     idColumn={idColumn}
+                    CardDetailId={task.CardDetailId}
+                    listname={colName}
+                    coverCard={task.coverCard}
                   />
                 ))}
                 {provided.placeholder}

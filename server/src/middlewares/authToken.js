@@ -9,13 +9,14 @@ const authToken=(req,res,next)=>{
   
 jwt.verify(token,TOKEN_SECRET,(err,decoded)=>{
             
-                req.user=decoded
 
                 if(err){
                   console.log("🚀 ~ file: authToken.js:15 ~ jwt.verify ~ err:", err)
                   
                   return  res.status(401).json({message:"Unauthorized"})
                 }
+                if(!req.user)req.user=decoded
+
         })
 
   }
