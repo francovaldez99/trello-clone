@@ -1,12 +1,15 @@
-import React from "react";
+import React,{useState} from "react";
 import Task from "../Task/Task";
 import { Draggable, Droppable } from "@hello-pangea/dnd";
 import AddCard from "./AddCard";
 import { SlOptions } from "react-icons/sl";
+import DropdDownColumn from "./DropdDownColumn";
+import { OptionColumn } from "./OptionColumn";
 
 function Column({ colName, tasks, idColumn, index }) {
   const sortedTasks = [...tasks].sort((a, b) => a.orderCard - b.orderCard);
-
+const [dropDownIsOpen,setDropDownIsOpen]=useState(false)
+const [renameTextAreaIsOpen,setRenameTextAreaIsOpen]=useState(false)
   return (
     <Draggable draggableId={idColumn} index={index}>
       {(provided) => (
@@ -16,15 +19,30 @@ function Column({ colName, tasks, idColumn, index }) {
           ref={provided.innerRef}
           {...provided.draggableProps}
         >
-          <div className="flex justify-around select-none cursor-pointer" >
+          {
+          renameTextAreaIsOpen ? <OptionColumn
+           setRenameTextAreaIsOpen={setRenameTextAreaIsOpen}
+            setDropDownIsOpen={setDropDownIsOpen}
+            idColumn={idColumn}
+            colName={colName}
+            />: <div className="flex justify-around select-none cursor-pointer" >
           
-          
-            <h3 className="text-center text-sm tracking-tight font-medium " {...provided.dragHandleProps}>
-              {colName}
-            </h3>
-            <span className="cursor-pointer select-none">
-            <SlOptions/>            </span>
-        </div>
+          <h3 className="text-center text-sm tracking-tight font-medium " {...provided.dragHandleProps}>
+            {colName}
+          </h3>
+          <span className="cursor-pointer select-none" onClick={()=>{ setDropDownIsOpen(!dropDownIsOpen) }} >
+           <SlOptions/>       
+           <div className="relative">
+            <DropdDownColumn
+             dropDownIsOpen={dropDownIsOpen}
+            setRenameTextAreaIsOpen={setRenameTextAreaIsOpen} 
+            idColumn={idColumn}/>
+                 </div>
+          </span>
+      </div>
+
+          }
+         
           <Droppable droppableId={idColumn} type="task">
             {(provided) => (
               <div {...provided.droppableProps} ref={provided.innerRef}>

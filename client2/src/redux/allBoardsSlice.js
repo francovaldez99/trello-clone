@@ -18,6 +18,34 @@ const allBoardsSlice = createSlice({
     newColBoard:(state,action)=>{
       state.boardDetail.Columns.push(action.payload)
     },
+    updateColName:(state,action)=>{
+      let indexCol=state.boardDetail.Columns.findIndex((col)=>col.id===action.payload.idColumn)
+      if(indexCol===-1)return
+      state.boardDetail.Columns[indexCol].columnName=action.payload.columnName
+    },
+    updateCardName:(state,action)=>{
+      let indexCol=state.boardDetail.Columns.findIndex((col)=>col.id===action.payload.idColumn)
+      let indexCard = state.boardDetail.Columns[indexCol].Cards.findIndex((card)=>card.id===action.payload.idCard)
+      state.boardDetail.Columns[indexCol].Cards[indexCard].CardName=action.payload.CardName
+    }
+    ,
+    deleteColumnAction:(state,action)=>{
+      let indexCol=state.boardDetail.Columns.findIndex((col)=>col.id===action.payload.idColumn)
+      if(indexCol===-1)return
+     let updatedCol =state.boardDetail.Columns.filter((col)=>col.id!=action.payload.idColumn)
+      state.boardDetail={
+        ...state.boardDetail,
+        Columns: updatedCol.map((col,index)=>{
+          return {
+            ...col,
+            orderColumn: index,
+          }
+        })
+      }
+   
+
+
+    },
     newCard:(state,action)=>{
       let indexCol=state.boardDetail.Columns.findIndex((col)=>col.id===action.payload.idColumn)
       if(indexCol===-1)return
@@ -27,8 +55,6 @@ const allBoardsSlice = createSlice({
 
     },
     newCoverCard:(state,action) => {
-
-  
       
       let indexCol=state.boardDetail.Columns.findIndex((col)=>col.id===action.payload.idColumn)
       let indexCard = state.boardDetail.Columns[indexCol].Cards.findIndex((card)=>card.id===action.payload.idCard)
@@ -99,6 +125,6 @@ const allBoardsSlice = createSlice({
   },
 });
 
-export const { setAllBoards, setBoardDetail, updateBoardOrder,newColBoard ,newCard,newCoverCard} =
+export const { setAllBoards, setBoardDetail, updateBoardOrder,newColBoard ,newCard,newCoverCard,updateColName,deleteColumnAction,updateCardName} =
   allBoardsSlice.actions;
 export default allBoardsSlice.reducer;

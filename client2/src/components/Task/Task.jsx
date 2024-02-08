@@ -11,7 +11,7 @@ const [cardDetailIsOpen,SetCardDetailIsOpen]=useState(false)
     <Draggable draggableId={`${taskIid}`} index={index} >
       {(provided) => (
         <div
-          className={`group  bg-white  m-2 p-1 select-none shadow-cardShadow border-gray-100 h-[${coverCard ? "290px": "148px"}] rounded-[8px] flex flex-col  hover:border-blue-500 hover:border`}
+          className={`group  bg-white  m-2 p-1 select-none shadow-cardShadow border-gray-100 h-[${coverCard ? "290px": "148px"}] rounded-[8px] flex flex-col border border-white hover:border-blue-500 hover:border`}
           {...provided.draggableProps}
           
           ref={provided.innerRef}

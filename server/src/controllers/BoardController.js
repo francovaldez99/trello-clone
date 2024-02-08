@@ -78,15 +78,19 @@ try {
   const {id}=req.params;
   const {data}=req.body;
 
+
 for (let index = 0; index < data.Columns.length; index++) {
 
   const updateColumns=async()=>{
     try {
       const findCol = await Column.findByPk(data.Columns[index].id)
- 
+      
 
+    
         findCol.orderColumn=index;
         await findCol.save()
+      
+        
       
     } catch (error) {
       console.log("🚀 ~ updateColumns ~ error:", error)
@@ -99,14 +103,16 @@ for (let index = 0; index < data.Columns.length; index++) {
       try {
         const findCard =await Card.findByPk(data.Columns[index].Cards[j].id)
         
-          findCard.ColumnId=data.Columns[index].id
-        
+      
+            findCard.ColumnId=data.Columns[index].id
+      
+            findCard.orderCard=data.Columns[index].Cards[j].orderCard
+
+            await findCard.save()
     
 
-          findCard.orderCard=data.Columns[index].Cards[j].orderCard
         
      
-        await findCard.save()
       } catch (error) {
         console.log("🚀 ~ updateCard ~ error:", error)
         

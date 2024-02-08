@@ -9,6 +9,8 @@ import View from "./View";
 import { updateCoverCard } from "../../apí/card";
 import { useDispatch, useSelector } from "react-redux";
 import { newCoverCard } from "../../redux/allBoardsSlice";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import RenameCard from "./RenameCard";
 
 function CardDetail({ SetCardDetailIsOpen ,taskname,cardDetailIsOpen,CardDetailId,listname,CardId,idColumn,coverCard}) {
   const dispatch=useDispatch()
@@ -17,6 +19,7 @@ function CardDetail({ SetCardDetailIsOpen ,taskname,cardDetailIsOpen,CardDetailI
   const [galleryIsOpen, SetGalleryIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
   const [displayEditor, setdisplayEditor] = useState(false);
+  const [renameCardIsOpen,setRenameCardIsOpen]=useState(false);
   useEffect(()=>{
 const updatecoverCard=async()=>{
   try {
@@ -29,9 +32,6 @@ const updatecoverCard=async()=>{
       coverCard:data.coverCard
     }))
 
-
-
-
     
   } catch (error) {
     console.log("🚀 ~ updatecoverCard ~ error:", error)
@@ -42,7 +42,6 @@ const updatecoverCard=async()=>{
       updatecoverCard()
     }
   },[selectedImage])
-
 
   useEffect(() => {
     const getCoverImage = ()=>{
@@ -70,7 +69,7 @@ const updatecoverCard=async()=>{
     return (
         <div
           className="relative top-0 bottom-0 left-0 right-0 
-         h-[630px]  w-[661px]  bg-white rounded-[8px]  p-[12px] z-[1] overflow-y-auto flex flex-col justify-evenly"
+         h-[630px]  w-[661px]  bg-white rounded-[8px]  p-[12px] z-[1] overflow-y-auto flex flex-col justify-between"
         >
           <span
             onClick={() => SetCardDetailIsOpen(false)}
@@ -86,15 +85,31 @@ const updatecoverCard=async()=>{
               className={` h-[230px] rounded-[8px]  object-cover object-p`}
               />):(<div className="h-"></div>)
             }
-            <div className="mb-[12px]">
-              <h2 className="">{taskname}</h2>
-              <span>in List <strong>{listname}</strong></span>
+            <div className="mb-[12px] relative  justify-self-start">
+              <h2 className="flex justify-start items-start m-[10px]">
+                {
+                  renameCardIsOpen ?
+                  (<RenameCard 
+                    taskname={taskname} setRenameCardIsOpen={setRenameCardIsOpen}/>):
+                   ( 
+                     <>
+                       <span className="mx-2 m-2">{taskname}</span>
+                                     
+                                         <span
+                                         onClick={()=>setRenameCardIsOpen(true)}
+                                          className="mx-2 rounded-full bg-gray-200 mt-1 p-2 hover:bg-gray-300 "><GoPencil/></span>
+                     </>)
+                }
+           
+              </h2>
+              <span className="text-xs font-bold text-gray-600 ">in List </span>
+               <strong className="text-xs">{listname}</strong>
               
             </div>
             <div className="flex justify-evenly mt-3">
                 
     
-              <p className="flex flex-row items-center justify-start self-end rounded-lg px-3 py-1 text-sm font-medium text-gray-600 bg-gray-200 w-[149px] transition focus:outline-none focus:ring"
+              <p className="flex flex-row items-center justify-start self-end rounded-lg px-3 py-1 text-sm font-medium text-gray-600 bg-gray-200 w-[149px] transition focus:outline-none focus:ring cursor-pointer hover:bg-gray-300"
               onClick={()=>setdisplayEditor(true)}>
                 <span className="mr-2">
                   <GoPencil />
@@ -102,7 +117,7 @@ const updatecoverCard=async()=>{
                 <span>Description</span>
               </p>
               <p
-                className="flex flex-row items-center justify-start self-end rounded-lg px-3 py-1 text-sm font-medium text-gray-600 bg-gray-200 w-[149px] transition focus:outline-none focus:ring cursor-pointer"
+                className="flex flex-row items-center justify-start self-end rounded-lg px-3 py-1 text-sm font-medium text-gray-600 bg-gray-200 w-[149px] transition focus:outline-none focus:ring cursor-pointer hover:bg-gray-300"
                 onClick={() => SetGalleryIsOpen(true)}
               >
                 <span className="mr-2">
@@ -110,6 +125,11 @@ const updatecoverCard=async()=>{
                 </span>
                 <span>Cover</span>
               </p>
+
+              <span className="flex flex-row items-center content-center justify-start self-end rounded-lg px-3 py-1 text-sm font-medium text-gray-600 bg-gray-200 w-[149px] transition focus:outline-none focus:ring cursor-pointer hover:bg-gray-300">
+                <span className='mr-1 text-red-500 py-1'><RiDeleteBin6Line/></span>
+                <span >delete card</span>
+            </span>
             </div>
     
           </div>
