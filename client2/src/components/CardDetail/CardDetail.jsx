@@ -90,7 +90,10 @@ const updatecoverCard=async()=>{
                 {
                   renameCardIsOpen ?
                   (<RenameCard 
-                    taskname={taskname} setRenameCardIsOpen={setRenameCardIsOpen}/>):
+                    taskname={taskname}
+                    CardId={CardId}
+                    idColumn={idColumn}
+                    setRenameCardIsOpen={setRenameCardIsOpen}/>):
                    ( 
                      <>
                        <span className="mx-2 m-2">{taskname}</span>

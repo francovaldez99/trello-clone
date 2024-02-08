@@ -4,7 +4,7 @@ const CardDetail = require("../models/CardDetail.model");
 const Column = require("../models/Column.model")
 
 
-const newColController=async(req,res)=>{
+const newCardController=async(req,res)=>{
 try {
     const {idCol}=req.params;
     const {CardName,orderCard}=req.body;
@@ -50,7 +50,46 @@ const updateCoverCardController =async(req,res)=>{
             
 }
 
+const updateCardNameController=async(req,res)=>{
+
+    try {
+        const {CardId}=req.params;
+        const {CardName}=req.body;
+        const findCard= await Card.findByPk(CardId);
+        findCard.CardName=CardName;
+        await findCard.save()
+        console.log(findCard);
+        res.status(200).json(findCard.dataValues)
+    } catch (error) {
+        res.status(500).json({message:error.message,...error})
+        
+    }
+}
+const deleteCardController=async(req,res)=>{
+try {
+    const {CardId}=req.params;
+    const findCard= await Card.findByPk(CardId);
+    
+    CardDetail.destroy({
+        where:{
+         id:findCard.dataValues.CardDetailId   
+        }
+    })
+    Card.destroy({
+        where:{
+            id:CardId
+        }
+    })
+
+    res.status(200).json({CardId})
+} catch (error) {
+    res.status(500).json({message:error.message,...error})
+    
+}
+}
 module.exports={
-    newColController,
-    updateCoverCardController
+    newCardController,
+    updateCoverCardController,
+    updateCardNameController,
+    deleteCardController
 }

@@ -1,10 +1,29 @@
 import React,{useState} from 'react'
 import { useDispatch, useSelector } from "react-redux";
+import { updateCardName } from '../../redux/allBoardsSlice';
+import { fetchUpdateCardName } from '../../apí/card';
 
-const RenameCard = ({taskname,setRenameCardIsOpen}) => {
+const RenameCard = ({taskname,setRenameCardIsOpen,CardId,idColumn}) => {
   const [taskName,setTaskName]=useState(taskname);
   const dispatch=useDispatch();
-  const {boardDetail}=useSelector((state)=>state.allBoards);
+  const handleRenameCardSubmit=async(event)=>{
+    event.preventDefault()
+try {
+
+    if(!taskName){
+    setRenameCardIsOpen(false)
+    return
+    }
+    const {data}= await fetchUpdateCardName(CardId,{CardName:taskName})
+    
+    dispatch(updateCardName({CardId,idColumn,CardName:data.CardName}))
+
+    setRenameCardIsOpen(false)
+} catch (error) {
+    console.log("🚀 ~ handleRenameCardSubmit ~ error:", error)
+    
+}
+  }
     return (
     <div className='  w-[full]'>     
       
@@ -13,7 +32,7 @@ const RenameCard = ({taskname,setRenameCardIsOpen}) => {
       rounded-lg  shadow-sm
       flex flex-row
       "
- 
+    onSubmit={(event)=>handleRenameCardSubmit(event)}
     >
       <input
         id="OrderNotes"

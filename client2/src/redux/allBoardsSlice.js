@@ -25,7 +25,7 @@ const allBoardsSlice = createSlice({
     },
     updateCardName:(state,action)=>{
       let indexCol=state.boardDetail.Columns.findIndex((col)=>col.id===action.payload.idColumn)
-      let indexCard = state.boardDetail.Columns[indexCol].Cards.findIndex((card)=>card.id===action.payload.idCard)
+      let indexCard = state.boardDetail.Columns[indexCol].Cards.findIndex((card)=>card.id===action.payload.CardId)
       state.boardDetail.Columns[indexCol].Cards[indexCard].CardName=action.payload.CardName
     }
     ,
