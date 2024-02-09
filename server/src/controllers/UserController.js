@@ -214,10 +214,36 @@ const verifyToken = async (req, res) => {
     jwt.verify(token, TOKEN_SECRET, async (err, decoded) => {
       
       
-    
+      User.findByPk(decoded.id)
+      .then((result)=>{
+
+        if(result){
+
+          req.user= {
+            id: result.dataValues.id,
+            email: result.dataValues.email,
+            firstname: result.dataValues.firstname,
+            lastname: result.dataValues.lastname,
+          }
+          return   res.status(200).json({
+            id: result.dataValues.id,
+            email: result.dataValues.email,
+            firstname: result.dataValues.firstname,
+            lastname: result.dataValues.lastname,
+          });
+        }else{
+        return  res.status(401).json({message:"Unauthorized"})
+
+        }
+      })
+      .catch((error)=>{
+        console.log(error);
+        return  res.status(401).json({message:"Unauthorized"})
+
+      })
     
 
-          return   res.status(200).json(decoded);
+         
 
 
       

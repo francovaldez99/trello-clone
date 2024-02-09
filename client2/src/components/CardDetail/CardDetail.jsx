@@ -6,9 +6,9 @@ import Gallery from "../Gallery/Gallery";
 import Editor from "./Editor";
 import { GoPencil } from "react-icons/go";
 import View from "./View";
-import { updateCoverCard } from "../../apí/card";
+import { fetchdeleteCard, updateCoverCard } from "../../apí/card";
 import { useDispatch, useSelector } from "react-redux";
-import { newCoverCard } from "../../redux/allBoardsSlice";
+import { deleteCard, newCoverCard } from "../../redux/allBoardsSlice";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import RenameCard from "./RenameCard";
 
@@ -49,7 +49,9 @@ const updatecoverCard=async()=>{
 
       
       let indexCard =boardDetail.Columns[indexCol].Cards.findIndex((card)=>card.id===CardId)
-
+      if(indexCard===-1){
+        return 
+      }
       let updateCoverImage=boardDetail.Columns[indexCol].Cards[indexCard].coverCard 
     
       if(updateCoverImage!=""){
@@ -63,7 +65,18 @@ const updatecoverCard=async()=>{
     }
 
   }, [boardDetail])
-  
+  const handleDeleteCard=async()=>{
+    try {
+      
+      const {data}= await fetchdeleteCard(CardId)
+      dispatch(deleteCard({idColumn,CardId:data.CardId}))
+      SetCardDetailIsOpen(false)
+
+    } catch (error) {
+      console.log("🚀 ~ handleDeleteCard ~ error:", error)
+      
+    }
+  }
 
   if(cardDetailIsOpen){
     return (
@@ -129,10 +142,15 @@ const updatecoverCard=async()=>{
                 <span>Cover</span>
               </p>
 
-              <span className="flex flex-row items-center content-center justify-start self-end rounded-lg px-3 py-1 text-sm font-medium text-gray-600 bg-gray-200 w-[149px] transition focus:outline-none focus:ring cursor-pointer hover:bg-gray-300">
-                <span className='mr-1 text-red-500 py-1'><RiDeleteBin6Line/></span>
-                <span >delete card</span>
-            </span>
+              <button className="flex flex-row items-center content-center justify-start self-end rounded-lg px-3 py-1 text-sm font-medium text-gray-600 bg-gray-200 w-[149px] transition focus:outline-none focus:ring cursor-pointer hover:bg-gray-300"
+              onClick={handleDeleteCard}>
+                <span
+                  
+                className='mr-1 font-bold py-1'
+                
+                ><RiDeleteBin6Line/></span>
+                <span className="font-bold">delete card</span>
+            </button>
             </div>
     
           </div>

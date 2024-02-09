@@ -1,5 +1,7 @@
 const jwt=require("jsonwebtoken");
 const { TOKEN_SECRET } = require("../config/env");
+const User = require("../models/User.model");
+
 const authToken=(req,res,next)=>{
   const token = req.cookies.token;
 
@@ -15,13 +17,36 @@ jwt.verify(token,TOKEN_SECRET,(err,decoded)=>{
                   
                   return  res.status(401).json({message:"Unauthorized"})
                 }
-                if(!req.user)req.user=decoded
+           
+                User.findByPk(decoded.id)
+                .then((result)=>{
+console.log(result);
+                  if(result){
+
+                    req.user= {
+                      id: result.dataValues.id,
+                      email: result.dataValues.email,
+                      firstname: result.dataValues.firstname,
+                      lastname: result.dataValues.lastname,
+                    }
+                    next()
+                  }else{
+                  return  res.status(401).json({message:"Unauthorized"})
+
+                  }
+                })
+                .catch((error)=>{
+                  console.log(error);
+                  return  res.status(401).json({message:"Unauthorized"})
+
+                })
+                
 
         })
 
   }
 
-next()
+
 }
 
 module.exports=authToken

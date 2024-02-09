@@ -29,6 +29,41 @@ const allBoardsSlice = createSlice({
       state.boardDetail.Columns[indexCol].Cards[indexCard].CardName=action.payload.CardName
     }
     ,
+    deleteCard:(state,action)=>{
+      let indexCol=state.boardDetail.Columns.findIndex((col)=>col.id===action.payload.idColumn)
+      let updatedCols =state.boardDetail.Columns.map((col,index)=>{
+        if(index===indexCol){
+          return {
+            ...col,
+            Cards:col.Cards.filter((card)=>card.id!=action.payload.CardId)
+          }
+        }else {
+          return {
+            ...col
+          }
+        }
+      })
+
+      
+      state.boardDetail = {
+        ...state.boardDetail,
+        Columns:updatedCols.map((col,indexCol)=>{
+          return {
+            ...col,
+            orderColumn:indexCol,
+            Cards:col.Cards.map((card,indexCard)=>{
+              return {
+                ...card,
+                orderCard:indexCard
+              }
+            })
+          }
+        })
+      }
+    }
+    
+    ,
+
     deleteColumnAction:(state,action)=>{
       let indexCol=state.boardDetail.Columns.findIndex((col)=>col.id===action.payload.idColumn)
       if(indexCol===-1)return
@@ -42,7 +77,7 @@ const allBoardsSlice = createSlice({
           }
         })
       }
-   
+     
 
 
     },
@@ -125,6 +160,6 @@ const allBoardsSlice = createSlice({
   },
 });
 
-export const { setAllBoards, setBoardDetail, updateBoardOrder,newColBoard ,newCard,newCoverCard,updateColName,deleteColumnAction,updateCardName} =
+export const { setAllBoards, setBoardDetail, updateBoardOrder,newColBoard ,newCard,newCoverCard,updateColName,deleteColumnAction,updateCardName,deleteCard} =
   allBoardsSlice.actions;
 export default allBoardsSlice.reducer;

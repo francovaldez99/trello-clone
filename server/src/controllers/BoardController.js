@@ -7,7 +7,10 @@ const Column = require("../models/Column.model")
 const createNewBoard=async(req,res)=>{
   try {
     const {boardName,cover}=req.body;
-    console.log(req.body);
+
+    if (!req.user || !req.user.id) {
+      throw new Error('Unauthorized');
+    }
     const UserId=req.user.id;
  await Board.create({
       boardName,
@@ -33,17 +36,27 @@ const createNewBoard=async(req,res)=>{
 
 const getAllBoards=async(req,res)=>{
 try {
-    const allBoards=await  Board.findAll({
+  if (!req.user || !req.user.id) {
+    throw new Error('Unauthorized');
+  }
+    const allBoards=await Board.findAll({
         where:{UserId:req.user.id},
      
     })
-    
+    console.log("🚀 ~ getAllBoards ~ allBoards:", allBoards)
 
+  if(!allBoards){
+    throw new Error('Unauthorized');
+
+  }
     res.status(200).json(allBoards)
-} catch (error) {
+
+} 
+catch (error) {
   console.log("🚀 ~ getAllBoards ~ error:", error)
   
     res.status(500).json({message:error.message})
+    return
 }
 
 }
@@ -64,7 +77,10 @@ try {
       ]
         
     })
+    if(!findBoard){
+      throw new Error('Unauthorized');
 
+    }
     res.status(200).json(findBoard)
 } catch (error) {
     console.log("🚀 ~ file: BoardController.js:30 ~ getBoardById ~ error:", error)
