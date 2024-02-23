@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect ,useState} from "react";
 import { useQuill } from "react-quilljs";
 import "quill/dist/quill.snow.css";
 import { useSelector, useDispatch } from "react-redux";
 import { getCardDetail } from "../../apí/cardDetail";
 
 function View({CardDetailId,setdisplayEditor}) {
+  
   const { CardDetail } = useSelector((state) => state.cardDetail);
   const { quill, quillRef } = useQuill({
     readOnly: true,
@@ -23,7 +24,7 @@ function View({CardDetailId,setdisplayEditor}) {
 
           quill.setContents(JSON.parse(data.content));
         }else{
-
+        quill.setText('Insert\nDescrioption...\n');
           setdisplayEditor(true)
         }
       } catch (error) {

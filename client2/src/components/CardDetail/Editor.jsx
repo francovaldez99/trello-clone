@@ -32,12 +32,12 @@ useEffect(() => {
   async function fetchCardDetail() {
     try {
       const {data}=await getCardDetail(CardDetailId)
-      console.log("🚀 ~ fetchCardDetail ~ data:", data)
+
       if(data.content){
 
         quill.setContents(JSON.parse(data.content));
       }else{
-
+        quill.setText('Hello\nWorld!\n');
         setdisplayEditor(true)
       }
     } catch (error) {

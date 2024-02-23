@@ -213,7 +213,11 @@ const verifyToken = async (req, res) => {
     const token = req.cookies.token;
     jwt.verify(token, TOKEN_SECRET, async (err, decoded) => {
       
+      if(!decoded){
+        
+        throw new Error("Unauthorized")
       
+      }
       User.findByPk(decoded.id)
       .then((result)=>{
 

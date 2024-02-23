@@ -11,6 +11,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteCard, newCoverCard } from "../../redux/allBoardsSlice";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import RenameCard from "./RenameCard";
+import { SlOptions } from "react-icons/sl";
+import DropDownDeleteCover from "./DropDownDeleteCover"
+
 
 function CardDetail({ SetCardDetailIsOpen ,taskname,cardDetailIsOpen,CardDetailId,listname,CardId,idColumn,coverCard}) {
   const dispatch=useDispatch()
@@ -20,6 +23,7 @@ function CardDetail({ SetCardDetailIsOpen ,taskname,cardDetailIsOpen,CardDetailI
   const [selectedImage, setSelectedImage] = useState("");
   const [displayEditor, setdisplayEditor] = useState(false);
   const [renameCardIsOpen,setRenameCardIsOpen]=useState(false);
+  const [DropDownDeleteCoverIsOpen,SetDropDownDeleteCoverIsOpen]=useState(false)
   useEffect(()=>{
 const updatecoverCard=async()=>{
   try {
@@ -38,9 +42,9 @@ const updatecoverCard=async()=>{
     
   }
 }
-    if(selectedImage){
+    
       updatecoverCard()
-    }
+    
   },[selectedImage])
 
   useEffect(() => {
@@ -82,21 +86,34 @@ const updatecoverCard=async()=>{
     return (
         <div
           className="relative top-0 bottom-0 left-0 right-0 
-         h-[630px]  w-[661px]  bg-white rounded-[8px]  p-[12px] z-[1] overflow-y-auto flex flex-col justify-between"
+         h-[630px]  w-[661px]  bg-white rounded-[8px]  p-[12px] z-[2] overflow-y-auto flex flex-col justify-between"
         >
           <span
             onClick={() => SetCardDetailIsOpen(false)}
-            className="absolute top-0 right-0  rounded-[8px] bg-indigo-600 px-1 py-1 text-sm font-medium text-white transition hover:bg-indigo-700 focus:outline-none focus:ring"
+            className="absolute top-0 right-0 z-[1]  rounded-[8px] bg-indigo-600 px-1 py-1 text-sm font-medium text-white transition hover:bg-indigo-700 focus:outline-none focus:ring"
           >
             <MdOutlineClose />
           </span>
-          <div className="flex flex-col ">
+          <div className="flex flex-col relative">
            {
-             coverCard || selectedImage ? (<img
-              src={coverCard || selectedImage}
-              alt={selectedImage}
-              className={` h-[230px] rounded-[8px]  object-cover object-p`}
-              />):(<div className="h-"></div>)
+             coverCard || selectedImage ? (<div className="w-full ">
+               <img
+                src={coverCard || selectedImage}
+                alt={selectedImage}
+                className={` max-h-[230px] w-full rounded-[8px]  object-cover`}
+                />
+                <div className="absolute top-0 left-[5px] " 
+                onDoubleClick={()=>SetDropDownDeleteCoverIsOpen(false)}
+                onClick={()=>SetDropDownDeleteCoverIsOpen(!DropDownDeleteCoverIsOpen)}>
+                  <button className="hover:scale-[1.29] transition-transform"><SlOptions/></button>
+                  <DropDownDeleteCover 
+                  setSelectedImage={setSelectedImage}
+                  DropDownDeleteCoverIsOpen={DropDownDeleteCoverIsOpen}
+                  />
+                  </div>
+             </div>
+              
+              ):(<div className="h-"></div>)
             }
             <div className="mb-[12px] relative  justify-self-start">
               <h2 className="flex justify-start items-start m-[10px]">
