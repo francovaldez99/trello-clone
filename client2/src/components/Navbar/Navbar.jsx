@@ -3,35 +3,43 @@ import { Link } from 'react-router-dom';
 import Cookies from "js-cookie";
 import { removeUser } from '../../redux/userSlice';
 import { useSelector,useDispatch } from 'react-redux';
+import logo from "../../assets/logo.jpg"
 const NavBar = () => {
     const dispatch=useDispatch()
     const {isAuthenticated,email }=useSelector((state)=>state.user) 
 
-  // Puedes personalizar la lógica según tus necesidades (por ejemplo, mostrar diferentes enlaces según el estado de autenticación)
+
   const logout = () => {
     Cookies.remove("token");
     dispatch(removeUser())
   };
 
   return (
-    <nav className="flex items-center justify-between p-4 bg-blue-500 text-white">
-      <div className="flex items-center space-x-4">
-        <Link to="/" className="text-lg font-bold">Inicio</Link>
-        <Link to="/about" className="text-lg">Acerca de</Link>
+    <nav className="flex items-center justify-between p-4  border rounded-[8px] shadow-lg text-white mb-3">
+      <div className="flex items-center space-x-4 text-black focus:text-gray-500">
+        <Link to="/" className="text-lg  hover:text-gray-600 focus:text-gray-500">
+          <img src={logo} 
+          alt="logo"
+          className='h-9 w-full object-contain' />
+        </Link>
+        <Link to="/about"
+         className="text-lg hover:text-gray-600 focus:text-gray-500">About</Link>
         {isAuthenticated && (<>
-          <Link to="/projects" className="text-lg">Tablero</Link>
-          <Link to="/" className="text-lg" >{email}</Link>
+          <Link to="/projects" className="text-lg hover:text-gray-600 focus:text-gray-500">My Boards</Link>
+        
         </>
         )}
       </div>
 
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center space-x-4 text-black hover:text-gray-600">
         {isAuthenticated ? (
-          <button  onClick={logout} className="text-lg">Cerrar Sesión</button>
+          <button  onClick={logout} className="text-lg hover:text-gray-600 focus:text-gray-500">logout</button>
         ) : (
           <>
-            <Link to="/login" className="text-lg">Iniciar Sesión</Link>
-            <Link to="/register" className="text-lg">Registrarse</Link>
+            <Link to="/login" className="text-lg hover:text-gray-600 focus:text-gray-500">login</Link>
+          
+          
+            <Link to="/register" className="text-lg hover:text-gray-600 focus:text-gray-500">register</Link>
           </>
         )}
       </div>

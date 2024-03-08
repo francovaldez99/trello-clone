@@ -3,8 +3,12 @@ import { login } from "../../apí/user";
 import { useNavigate } from "react-router-dom";
 import { useSelector ,useDispatch} from "react-redux";
 import { ChangeAuth,addUser } from "../../redux/userSlice";
+import {setShowToast,setToastMessage,setToastType} from "../../redux/userSlice"
+
+
 function LoginForm() {
   const {isAuthenticated}=useSelector((state)=>state.user)
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formLogin, setFormLogin] = useState({
@@ -17,18 +21,29 @@ function LoginForm() {
     // Tu lógica de inicio de sesión aquí utilizando la API
     login(formLogin)
       .then((res) => {
-        console.log("🚀 ~ file: LoginForm.jsx:18 ~ .then ~ res:", res)
+   
         
       
         dispatch(ChangeAuth(true))
         dispatch(addUser(res.data))
-        alert(res.data.message);
-
+ 
+        console.log(res);
+        ///
+        dispatch(setShowToast(true))
+        dispatch(setToastMessage(res.data.message))
+       dispatch(setToastType(""))
+     
+        ///
         navigate("/board");
       })
       .catch((err) => {
         console.error(err);
-        alert(err.response.data.message);
+   ///
+   dispatch(setShowToast(true))
+   dispatch(setToastMessage(err.response.data.message))
+  dispatch(setToastType(""))
+
+   ///
         dispatch(ChangeAuth(false))
 
       });
@@ -49,15 +64,20 @@ function LoginForm() {
       navigate("/projects")
     }
     }, [isAuthenticated])
+ 
 
+   
+  
   return (
     <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
+      
+     
       <div className="max-w-xl lg:max-w-3xl">
         {/* ... (mismo encabezado que el formulario de registro) ... */}
         <h1 className="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-          Welcome back to Squid 🦑
+        Welcome back to TaskSync 📋
         </h1>
-
+        
         {/* Formulario de inicio de sesión */}
         <form onSubmit={handleSubmit} className="mt-8 grid grid-cols-6 gap-6">
           {/* Email */}
@@ -73,7 +93,7 @@ function LoginForm() {
               type="email"
               id="Email"
               name="email"
-              className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+              className="mt-1 w-full rounded-md border border-gray-700 bg-white text-sm text-gray-900 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none"
               value={formLogin.email}
               onChange={handleChange}
             />
@@ -92,7 +112,7 @@ function LoginForm() {
               type="password"
               id="Password"
               name="password"
-              className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+              className="mt-1 w-full rounded-md border border-gray-700 bg-white text-sm text-gray-900 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none"
               value={formLogin.password}
               onChange={handleChange}
             />
@@ -116,7 +136,9 @@ function LoginForm() {
             </p>
           </div>
         </form>
+    
       </div>
+     
     </main>
   );
 }

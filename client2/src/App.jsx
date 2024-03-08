@@ -13,6 +13,8 @@ import { ChangeAuth, addUser } from './redux/userSlice';
 import { verifyToken } from './apí/user';
 import NavBar from './components/Navbar/Navbar';
 import AllBoardsPage from './pages/AllBoardsPage/AllBoardsPage';
+import About from './pages/AboutPage/AboutPage';
+import Notification from './components/Notification/Notification';
 
 function App() {
   const user=useSelector((state)=>state.user)
@@ -57,6 +59,7 @@ function App() {
 
     <Routes>
       <Route path="/" element={<HomePage/>}/>
+      <Route path='/about' element={<About/>} />
       <Route path="/register" element={<RegisterPage/>}/>
       <Route path="/login" element={<LoginPage/>}/>
       <Route element={<ProtectedRoute/>}>
@@ -68,7 +71,7 @@ function App() {
     </Routes>
 
 
-
+<Notification/>
     </div>
   );
 }

@@ -156,7 +156,7 @@ const loginController = async (req, res) => {
       );
 
       if (!passwordIsMatch) {
-        return res.status(401).json({ errMessage: "incorrect password." });
+        return res.status(401).json({ message: "incorrect password." });
       } else {
         //aqui la logica para dar un token al usuario
         const token = await jwt.sign(
@@ -198,13 +198,14 @@ const loginController = async (req, res) => {
             email: findUser.dataValues.email,
             firtsname: findUser.dataValues.firstname,
             lastname: findUser.dataValues.lastname,
+            message:`welcome back ${findUser.dataValues.firstname}`
           });
         }
       }
     }
   } catch (error) {
     console.log(error);
-    res.status(400).json({ errMessage: "Something went wrong :(" });
+    res.status(400).json({ message: "Something went wrong :(" });
   }
 };
 
@@ -213,9 +214,10 @@ const verifyToken = async (req, res) => {
     const token = req.cookies.token;
     jwt.verify(token, TOKEN_SECRET, async (err, decoded) => {
       
+      
       if(!decoded){
         
-        throw new Error("Unauthorized")
+        return  res.status(401).json({message:"Unauthorized"})
       
       }
       User.findByPk(decoded.id)

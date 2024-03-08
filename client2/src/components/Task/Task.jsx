@@ -6,6 +6,7 @@ import CardDetail from "../CardDetail/CardDetail";
 
 function Task({ taskname, taskIid, index, idColumn ,CardDetailId,listname,coverCard}) {
 const [cardDetailIsOpen,SetCardDetailIsOpen]=useState(false)
+const truncatedText = taskname.length > 16 ? taskname.slice(0, 16) + '...' : taskname;
 
   return (
     <Draggable draggableId={`${taskIid}`} index={index} >
@@ -25,7 +26,7 @@ const [cardDetailIsOpen,SetCardDetailIsOpen]=useState(false)
 
   <h3 
   className="font-semibold  w-[100px]  overflow-ellipsis  text-base  tracking-[-0.56px] flex-shrink row-span-1  py-1 ml-1" {...provided.dragHandleProps} >
-    {taskname}
+    {truncatedText}
   </h3>
   <div className="flex w-full  opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out cursor-pointer select-none mt-2 ml-2">
    

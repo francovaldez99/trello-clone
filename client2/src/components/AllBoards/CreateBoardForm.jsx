@@ -67,7 +67,7 @@ function CreateBoardForm({ setIsOpen }) {
 
       <div className="flex  justify-evenly">
         <p 
-        className="flex flex-row  items-center rounded-lg  px-3 py-1 text-sm font-medium text-[#828282] transition  focus:outline-none focus:ring ml-[23px] "
+        className="flex flex-row  items-center rounded-lg  px-3 py-1 text-sm font-medium text-[#828282] transition  focus:outline-none focus:ring ml-[23px] cursor-pointer select-none hover:text-gray-600 focus:text-gray-500"
          onClick={()=>SetGalleryIsOpen(true)}>
           <span>
             <AiFillPicture />
@@ -92,7 +92,7 @@ function CreateBoardForm({ setIsOpen }) {
             />
           </div>
         </Modal>
-        <button className="flex flex-row  items-center rounded-lg  px-3 py-1 text-sm font-medium text-[#828282] transition  focus:outline-none focus:ring ml-[23px] ">
+        <button className="flex flex-row  items-center rounded-lg  px-3 py-1 text-sm font-medium text-[#828282] transition  focus:outline-none focus:ring ml-[23px]  cursor-pointer select-none " disabled>
           <span>
             <TbLock />
           </span>

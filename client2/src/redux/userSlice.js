@@ -5,6 +5,9 @@ const initialState={
     lastname:"",
     email:"",
     isAuthenticated:false,
+    showToast:"",
+    toastMessage:"",
+    toastType:""
 }
 const userSlice =createSlice({
     name:"user",
@@ -25,10 +28,19 @@ const userSlice =createSlice({
             state.lastname="";
             state.email="";
             state.isAuthenticated=""
+        },
+        setShowToast:(state,action)=>{
+            state.showToast=action.payload
+        },
+        setToastMessage:(state,action)=>{
+            state.toastMessage=action.payload
+        },
+        setToastType:(state,action)=>{
+            state.toastType=action.payload
         }
     }
 })
 
 
-export const { addUser, ChangeAuth , removeUser}=userSlice.actions
+export const { addUser, ChangeAuth , removeUser,setShowToast,setToastMessage,setToastType}=userSlice.actions
 export default userSlice.reducer
