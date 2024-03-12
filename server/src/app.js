@@ -10,7 +10,10 @@ const { CLIENT_URL } = require("./config/env")
 console.log(CLIENT_URL);
  app.use(cors({
     credentials:true,
-    origin:CLIENT_URL
+    origin:CLIENT_URL,
+    
+    
+
    }))
    app.use(cookieParser())
  app.use(bodyParser.urlencoded({extended:false}))
