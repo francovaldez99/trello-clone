@@ -7,6 +7,8 @@ const TOKEN_SECRET=process.env.TOKEN_SECRET;
 const NODE_ENV =process.env.NODE_ENV;
 const CLIENT_URL=process.env.CLIENT_URL;
 const DB_CONNECT=process.env.DB_CONNECT;
+const DB_PORT=process.env.DB_PORT;
+const DB_NAME=process.env.DB_NAME;
 module.exports={
     DB_PASSWORD,
     DB_USER,
@@ -15,5 +17,7 @@ module.exports={
     TOKEN_SECRET,
     NODE_ENV,
     CLIENT_URL,
-    DB_CONNECT
+    DB_CONNECT,
+    DB_PORT,
+    DB_NAME
 }
