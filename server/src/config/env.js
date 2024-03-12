@@ -6,6 +6,7 @@ const SALT_BCRYPT=process.env.SALT_BCRYPT;
 const TOKEN_SECRET=process.env.TOKEN_SECRET;
 const NODE_ENV =process.env.NODE_ENV;
 const CLIENT_URL=process.env.CLIENT_URL;
+const DB_CONNECT=process.env.DB_CONNECT;
 module.exports={
     DB_PASSWORD,
     DB_USER,
@@ -13,5 +14,6 @@ module.exports={
     SALT_BCRYPT,
     TOKEN_SECRET,
     NODE_ENV,
-    CLIENT_URL
+    CLIENT_URL,
+    DB_CONNECT
 }

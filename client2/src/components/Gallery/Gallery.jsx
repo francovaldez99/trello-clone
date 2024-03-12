@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { UNPLASH_CLIENT_ID } from '../../config';
 
 const Gallery = ({ onSelect, selectedImage,SetGalleryIsOpen }) => {
   const [images, setImages] = useState([]);
@@ -10,7 +11,8 @@ const [searching,setSeaching]=useState(false)
     try {
 
       const response = await axios.get(
-        'https://api.unsplash.com/photos/?client_id=SFKVPNxK9YkHWmH3yscsagWEHDq5pxgDwtc1gqxWuFI'
+        `https://api.unsplash.com/photos/?client_id=${UNPLASH_CLIENT_ID}`
+
       );
 
       setImages(response.data);
@@ -23,7 +25,7 @@ const [searching,setSeaching]=useState(false)
   const fetchSearchImages = async () => {
     try {
       const response = await axios.get(
-        `https://api.unsplash.com/search/photos/?query=${debouncedSearch}&client_id=SFKVPNxK9YkHWmH3yscsagWEHDq5pxgDwtc1gqxWuFI`
+        `https://api.unsplash.com/search/photos/?query=${debouncedSearch}&client_id=${UNPLASH_CLIENT_ID}`
       );
       setImages(response.data.results);
     } catch (error) {

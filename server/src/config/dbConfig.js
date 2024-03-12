@@ -1,8 +1,8 @@
 const { Sequelize } = require("sequelize");
-const { DB_USER, DB_PASSWORD, DB_HOST } = require("./env");
+const { DB_USER, DB_PASSWORD, DB_HOST,DB_CONNECT } = require("./env");
 
 const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/trello_clone`,
+  DB_CONNECT,
   { logging: false }
 );
 async function dbConnect() {
