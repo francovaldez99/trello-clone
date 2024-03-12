@@ -190,6 +190,7 @@ const loginController = async (req, res) => {
               email: findUser.dataValues.email,
               name: findUser.dataValues.name,
               lastname: findUser.dataValues.lastname,
+              message:`welcome back ${findUser.dataValues.firstname}`
             });
         } else {
           res.cookie("token", token).json({
