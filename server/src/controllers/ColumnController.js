@@ -23,7 +23,7 @@ const newColumn=async(req,res)=>{
           },
         ]
        })
-       console.log("🚀 ~ newColumn ~ newColumn:", newColumn)
+       
 
 
     res.status(200).json(findCol)
@@ -42,7 +42,7 @@ try {
   const findCol = await Column.findByPk(idColumn);
   findCol.columnName=columnName;
   await findCol.save()
-  console.log(findCol);
+
   res.status(200).json(findCol.dataValues)
 } catch (error) {
   console.log("🚀 ~ updateColumnName ~ error:", error)

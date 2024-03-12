@@ -3,10 +3,9 @@ const CardDetail = require("../models/CardDetail.model");
 const getCardDetailController =async (req,res)=>{
 try {
     const {CardDetailId}=req.params;
-    console.log("🚀 ~ getCardDetailController ~ CardDetailId:", CardDetailId)
-    
+  
     const {dataValues} = await CardDetail.findByPk(CardDetailId);
-    console.log("🚀 ~ getCardDetailController ~ findCardDetail:", dataValues)
+ 
     
     res.status(200).json(dataValues);
 } catch (error) {

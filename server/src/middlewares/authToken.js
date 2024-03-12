@@ -13,14 +13,14 @@ jwt.verify(token,TOKEN_SECRET,(err,decoded)=>{
             
 
                 if(err){
-                  console.log("🚀 ~ file: authToken.js:15 ~ jwt.verify ~ err:", err)
+                  // console.log("🚀 ~ file: authToken.js:15 ~ jwt.verify ~ err:", err)
                   
                   return  res.status(401).json({message:"Unauthorized"})
                 }
            
                 User.findByPk(decoded.id)
                 .then((result)=>{
-console.log(result);
+// console.log(result);
                   if(result){
 
                     req.user= {
@@ -36,7 +36,7 @@ console.log(result);
                   }
                 })
                 .catch((error)=>{
-                  console.log(error);
+                  // console.log(error);
                   return  res.status(401).json({message:"Unauthorized"})
 
                 })

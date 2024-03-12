@@ -43,7 +43,7 @@ try {
         where:{UserId:req.user.id},
      
     })
-    console.log("🚀 ~ getAllBoards ~ allBoards:", allBoards)
+    
 
   if(!allBoards){
     throw new Error('Unauthorized');

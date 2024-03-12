@@ -38,7 +38,7 @@ const updateCoverCardController =async(req,res)=>{
         const findCard= await Card.findByPk(CardId)
             findCard.coverCard = coverCard;
             await findCard.save()
-            console.log("🚀 ~ updateCoverCardController ~ findCard:", findCard)
+        
             res.status(200).json(findCard.dataValues)
 
     } catch (error) {
@@ -58,7 +58,7 @@ const updateCardNameController=async(req,res)=>{
         const findCard= await Card.findByPk(CardId);
         findCard.CardName=CardName;
         await findCard.save()
-        console.log(findCard);
+     
         res.status(200).json(findCard.dataValues)
     } catch (error) {
         res.status(500).json({message:error.message,...error})
