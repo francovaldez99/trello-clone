@@ -9,6 +9,7 @@ const CLIENT_URL=process.env.CLIENT_URL;
 const DB_CONNECT=process.env.DB_CONNECT;
 const DB_PORT=process.env.DB_PORT;
 const DB_NAME=process.env.DB_NAME;
+const PORT = process.env.PORT;
 module.exports={
     DB_PASSWORD,
     DB_USER,
@@ -19,5 +20,6 @@ module.exports={
     CLIENT_URL,
     DB_CONNECT,
     DB_PORT,
-    DB_NAME
+    DB_NAME,
+    PORT
 }
