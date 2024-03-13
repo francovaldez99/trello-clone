@@ -95,11 +95,11 @@ const updatecoverCard=async()=>{
             <MdOutlineClose />
           </span>
           <div className="flex flex-col relative">
-           {
-             coverCard || selectedImage ? (<div className="w-full ">
+           
+               <div className="w-full ">
                <img
-                src={coverCard || selectedImage}
-                alt={selectedImage}
+                src={coverCard }
+                
                 className={` max-h-[230px] w-full rounded-[8px]  object-cover`}
                 />
                 <div className="absolute top-0 left-[5px] " 
@@ -113,8 +113,8 @@ const updatecoverCard=async()=>{
                   </div>
              </div>
               
-              ):(<div className="h-"></div>)
-            }
+              
+            
             <div className="mb-[12px] relative  justify-self-start">
               <h2 className="flex justify-start items-start m-[10px]">
                 {
