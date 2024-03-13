@@ -1,5 +1,5 @@
 import { Draggable } from "@hello-pangea/dnd";
-import { useState } from "react";
+import 
 import { GoPencil } from "react-icons/go";
 import Modal from "../Modal/Modal";
 import CardDetail from "../CardDetail/CardDetail";
@@ -37,14 +37,14 @@ const truncatedText = taskname.length > 16 ? taskname.slice(0, 16) + '...' : tas
 
   </div>
         <Modal isOpen={cardDetailIsOpen}>
-          {/* <CardDetail SetCardDetailIsOpen={SetCardDetailIsOpen}
+          <CardDetail SetCardDetailIsOpen={SetCardDetailIsOpen}
            CardId={taskIid}
            taskname={taskname}
             listname={listname}
              cardDetailIsOpen={cardDetailIsOpen}
               CardDetailId={CardDetailId}
               idColumn={idColumn}
-              coverCard={coverCard}/> */}
+              coverCard={coverCard}/>
         </Modal>
 
 
