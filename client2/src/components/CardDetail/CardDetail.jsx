@@ -180,7 +180,9 @@ const updatecoverCard=async()=>{
           </div>
           <div className="h-[300px]">
             {
-                displayEditor ? (<Editor setdisplayEditor={setdisplayEditor} CardDetailId={CardDetailId}/>
+                displayEditor ? (<Editor
+                   setdisplayEditor={setdisplayEditor}
+                   CardDetailId={CardDetailId}/>
                 
                 ):(<View CardDetailId={CardDetailId} setdisplayEditor={setdisplayEditor}/>)
             }

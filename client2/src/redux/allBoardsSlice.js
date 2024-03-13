@@ -89,16 +89,20 @@ const allBoardsSlice = createSlice({
       }
 
     },
-    newCoverCard:(state,action) => {
-      
-      let indexCol=state.boardDetail.Columns.findIndex((col)=>col.id===action.payload.idColumn)
-      let indexCard = state.boardDetail.Columns[indexCol].Cards.findIndex((card)=>card.id===action.payload.idCard)
-      if(indexCol===-1)return
-  
-        state.boardDetail.Columns[indexCol].Cards[indexCard].coverCard=action.payload.coverCard
-        
-      
+    newCoverCard: (state, action) => {
+      const { idColumn, idCard, coverCard } = action.payload;
+    
+
+      const columnIndex = state.boardDetail.Columns.findIndex(col => col.id === idColumn);
+      if (columnIndex === -1) return;
+    
+      const cardIndex = state.boardDetail.Columns[columnIndex].Cards.findIndex(card => card.id === idCard);
+      if (cardIndex === -1) return;
+    
+     
+      state.boardDetail.Columns[columnIndex].Cards[cardIndex].coverCard = coverCard;
     }
+    
    , updateBoardOrder: (state, action) => {
       const { source, destination, type } = action.payload;
       if (!destination) {
