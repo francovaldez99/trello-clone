@@ -24,31 +24,31 @@ function CardDetail({ SetCardDetailIsOpen ,taskname,cardDetailIsOpen,CardDetailI
   const [displayEditor, setdisplayEditor] = useState(false);
   const [renameCardIsOpen,setRenameCardIsOpen]=useState(false);
   const [DropDownDeleteCoverIsOpen,SetDropDownDeleteCoverIsOpen]=useState(false)
-  useEffect(()=>{
-const updatecoverCard=async()=>{
-  try {
-    console.log(CardId);
+//   useEffect(()=>{
+// const updatecoverCard=async()=>{
+//   try {
+//     console.log(CardId);
 
 
-    const {data}=await updateCoverCard(CardId,{
-      coverCard:selectedImage
-    })
-    dispatch(newCoverCard({
-      idColumn,
-      idCard:CardId,
-      coverCard:data.coverCard
-    }))
+//     const {data}=await updateCoverCard(CardId,{
+//       coverCard:selectedImage
+//     })
+//     dispatch(newCoverCard({
+//       idColumn,
+//       idCard:CardId,
+//       coverCard:data.coverCard
+//     }))
 
     
-  } catch (error) {
-    console.log("🚀 ~ updatecoverCard ~ error:", error)
+//   } catch (error) {
+//     console.log("🚀 ~ updatecoverCard ~ error:", error)
     
-  }
-}
+//   }
+// }
     
-      updatecoverCard()
+//       updatecoverCard()
     
-  },[selectedImage])
+//   },[selectedImage])
 
   useEffect(() => {
     const getCoverImage = ()=>{
