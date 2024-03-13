@@ -172,10 +172,7 @@ const loginController = async (req, res) => {
           }
         );
 
-        //   res.status(200).json({
-        //     token,
-        // ...findUser.dataValues
-        //   })
+
 
         if (NODE_ENV === "production") {
           res
@@ -183,9 +180,7 @@ const loginController = async (req, res) => {
               sameSite: "None",
               secure: true,
               
-            })
-            
-            res.json({
+            }).json({
               token,
               id: findUser.dataValues.id,
               email: findUser.dataValues.email,

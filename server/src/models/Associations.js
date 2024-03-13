@@ -26,9 +26,7 @@ function defineAssociations() {
     //cada card tiene un CardDetail
     CardDetail.hasOne(Card);
     Card.belongsTo(CardDetail)
-    console.log(
-      "🚀 ~ file: Associations.js:10 ~ defineAssociations ~ defineAssociations:"
-    );
+  
   } catch (error) {
     console.log(
       "🚀 ~ file: Associations.js:28 ~ defineAssociations ~ error:",
