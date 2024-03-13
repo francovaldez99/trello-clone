@@ -27,6 +27,9 @@ function CardDetail({ SetCardDetailIsOpen ,taskname,cardDetailIsOpen,CardDetailI
   useEffect(()=>{
 const updatecoverCard=async()=>{
   try {
+    console.log(CardId);
+
+
     const {data}=await updateCoverCard(CardId,{
       coverCard:selectedImage
     })
@@ -49,7 +52,11 @@ const updatecoverCard=async()=>{
 
   useEffect(() => {
     const getCoverImage = ()=>{
+      console.log(boardDetail.Columns);
+      console.log(idColumn);
+
       let indexCol = boardDetail.Columns.findIndex((col)=>col.id===idColumn)
+      console.log("🚀 ~ getCoverImage ~ indexCol:", indexCol)
 
       
       let indexCard =boardDetail.Columns[indexCol].Cards.findIndex((card)=>card.id===CardId)
