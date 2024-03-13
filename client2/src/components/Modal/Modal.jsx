@@ -1,4 +1,3 @@
-import React from "react";
 
 function Modal({ isOpen, setIsOpen, children }) {
   if (isOpen) {
