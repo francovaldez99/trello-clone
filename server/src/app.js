@@ -8,17 +8,17 @@ const cors=require("cors")
 const { CLIENT_URL } = require("./config/env")
  //middlewares
 console.log(CLIENT_URL);
+app.use(morgan("dev"))
  app.use(cors({
     credentials:true,
     origin:CLIENT_URL,
-    
+
     
 
    }))
    app.use(cookieParser())
  app.use(bodyParser.urlencoded({extended:false}))
  app.use(express.json())
- app.use(morgan("dev"))
  app.use("/api",indexRouter)
 module.exports=app
 
