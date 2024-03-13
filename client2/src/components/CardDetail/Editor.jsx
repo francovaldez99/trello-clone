@@ -3,7 +3,7 @@ import {useQuill} from "react-quilljs";
 import "quill/dist/quill.snow.css"
 import toolbar from './toolbar';
 import {useSelector,useDispatch} from "react-redux";
-import { setCardDetail } from '../../redux/CardDetailSlice';
+
 import { getCardDetail, updateCardDetail } from '../../apí/cardDetail';
 function Editor({setdisplayEditor,CardDetailId}) {
     const dispatch=useDispatch()
