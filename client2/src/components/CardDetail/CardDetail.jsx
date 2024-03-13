@@ -24,58 +24,58 @@ function CardDetail({ SetCardDetailIsOpen ,taskname,cardDetailIsOpen,CardDetailI
   const [displayEditor, setdisplayEditor] = useState(false);
   const [renameCardIsOpen,setRenameCardIsOpen]=useState(false);
   const [DropDownDeleteCoverIsOpen,SetDropDownDeleteCoverIsOpen]=useState(false)
-//   useEffect(()=>{
-// const updatecoverCard=async()=>{
-//   try {
-//     console.log(CardId);
+  useEffect(()=>{
+const updatecoverCard=async()=>{
+  try {
+    console.log(CardId);
 
 
-//     const {data}=await updateCoverCard(CardId,{
-//       coverCard:selectedImage
-//     })
-//     dispatch(newCoverCard({
-//       idColumn,
-//       idCard:CardId,
-//       coverCard:data.coverCard
-//     }))
+    const {data}=await updateCoverCard(CardId,{
+      coverCard:selectedImage
+    })
+    dispatch(newCoverCard({
+      idColumn,
+      idCard:CardId,
+      coverCard:data.coverCard
+    }))
 
     
-//   } catch (error) {
-//     console.log("🚀 ~ updatecoverCard ~ error:", error)
+  } catch (error) {
+    console.log("🚀 ~ updatecoverCard ~ error:", error)
     
-//   }
-// }
+  }
+}
     
-//       updatecoverCard()
+      updatecoverCard()
     
-//   },[selectedImage])
+  },[selectedImage])
 
-  // useEffect(() => {
-  //   const getCoverImage = ()=>{
-  //     console.log(boardDetail.Columns);
-  //     console.log(idColumn);
+  useEffect(() => {
+    const getCoverImage = ()=>{
+      console.log(boardDetail.Columns);
+      console.log(idColumn);
 
-  //     let indexCol = boardDetail.Columns.findIndex((col)=>col.id===idColumn)
-  //     console.log("🚀 ~ getCoverImage ~ indexCol:", indexCol)
+      let indexCol = boardDetail.Columns.findIndex((col)=>col.id===idColumn)
+      console.log("🚀 ~ getCoverImage ~ indexCol:", indexCol)
 
       
-  //     let indexCard =boardDetail.Columns[indexCol].Cards.findIndex((card)=>card.id===CardId)
-  //     if(indexCard===-1){
-  //       return 
-  //     }
-  //     let updateCoverImage=boardDetail.Columns[indexCol].Cards[indexCard].coverCard 
+      let indexCard =boardDetail.Columns[indexCol].Cards.findIndex((card)=>card.id===CardId)
+      if(indexCard===-1){
+        return 
+      }
+      let updateCoverImage=boardDetail.Columns[indexCol].Cards[indexCard].coverCard 
     
-  //     if(updateCoverImage!=""){
+      if(updateCoverImage!=""){
 
-  //       setSelectedImage(updateCoverImage)
-  //     }
-  //   }
+        setSelectedImage(updateCoverImage)
+      }
+    }
     
-  //   if(boardDetail){
-  //     getCoverImage()
-  //   }
+    if(boardDetail){
+      getCoverImage()
+    }
 
-  // }, [boardDetail])
+  }, [boardDetail])
   const handleDeleteCard=async()=>{
     try {
       
