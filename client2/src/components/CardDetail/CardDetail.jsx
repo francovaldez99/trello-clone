@@ -50,32 +50,32 @@ function CardDetail({ SetCardDetailIsOpen ,taskname,cardDetailIsOpen,CardDetailI
     
 //   },[selectedImage])
 
-  useEffect(() => {
-    const getCoverImage = ()=>{
-      console.log(boardDetail.Columns);
-      console.log(idColumn);
+  // useEffect(() => {
+  //   const getCoverImage = ()=>{
+  //     console.log(boardDetail.Columns);
+  //     console.log(idColumn);
 
-      let indexCol = boardDetail.Columns.findIndex((col)=>col.id===idColumn)
-      console.log("🚀 ~ getCoverImage ~ indexCol:", indexCol)
+  //     let indexCol = boardDetail.Columns.findIndex((col)=>col.id===idColumn)
+  //     console.log("🚀 ~ getCoverImage ~ indexCol:", indexCol)
 
       
-      let indexCard =boardDetail.Columns[indexCol].Cards.findIndex((card)=>card.id===CardId)
-      if(indexCard===-1){
-        return 
-      }
-      let updateCoverImage=boardDetail.Columns[indexCol].Cards[indexCard].coverCard 
+  //     let indexCard =boardDetail.Columns[indexCol].Cards.findIndex((card)=>card.id===CardId)
+  //     if(indexCard===-1){
+  //       return 
+  //     }
+  //     let updateCoverImage=boardDetail.Columns[indexCol].Cards[indexCard].coverCard 
     
-      if(updateCoverImage!=""){
+  //     if(updateCoverImage!=""){
 
-        setSelectedImage(updateCoverImage)
-      }
-    }
+  //       setSelectedImage(updateCoverImage)
+  //     }
+  //   }
     
-    if(boardDetail){
-      getCoverImage()
-    }
+  //   if(boardDetail){
+  //     getCoverImage()
+  //   }
 
-  }, [boardDetail])
+  // }, [boardDetail])
   const handleDeleteCard=async()=>{
     try {
       
