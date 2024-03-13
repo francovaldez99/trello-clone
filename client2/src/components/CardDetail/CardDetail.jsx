@@ -179,13 +179,13 @@ function CardDetail({ SetCardDetailIsOpen ,taskname,cardDetailIsOpen,CardDetailI
     
           </div>
           <div className="h-[300px]">
-            {
+            {/* {
                 displayEditor ? (<Editor
                    setdisplayEditor={setdisplayEditor}
                    CardDetailId={CardDetailId}/>
                 
                 ):(<View CardDetailId={CardDetailId} setdisplayEditor={setdisplayEditor}/>)
-            }
+            } */}
           </div>
 
             <Modal isOpen={galleryIsOpen}>
