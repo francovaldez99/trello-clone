@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { Draggable } from "@hello-pangea/dnd";
-import 
+
 import { GoPencil } from "react-icons/go";
 import Modal from "../Modal/Modal";
 import CardDetail from "../CardDetail/CardDetail";
