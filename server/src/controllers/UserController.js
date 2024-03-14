@@ -180,7 +180,7 @@ const loginController = async (req, res) => {
           .cookie("token", token, {
             sameSite:"None",
             secure:true,
-
+            
               
             }).json({
               token,
