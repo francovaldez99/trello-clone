@@ -176,10 +176,10 @@ const loginController = async (req, res) => {
 
         if (NODE_ENV === "production") {
           // const oneHour = 3600000;
-          // secure:true,
           res
           .cookie("token", token, {
-              sameSite:"None"
+            sameSite:"None",
+            secure:true,
 
               
             }).json({
