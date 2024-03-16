@@ -1,4 +1,4 @@
-const { SALT_BCRYPT, TOKEN_SECRET, NODE_ENV } = require("../config/env");
+const { SALT_BCRYPT, TOKEN_SECRET, NODE_ENV, CLIENT_URL } = require("../config/env");
 const User = require("../models/User.model");
 
 const Board = require("../models/Board.model");
@@ -180,7 +180,7 @@ const loginController = async (req, res) => {
           .cookie("token", token, {
             sameSite:"None",
             secure:true,
-            
+            domain:CLIENT_URL
               
             }).json({
               token,
