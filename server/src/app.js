@@ -11,7 +11,7 @@ console.log(CLIENT_URL);
 app.use(morgan("dev"))
  app.use(cors({
     credentials:true,
-    origin:"trello-clone-client.onrender.com",
+    origin:CLIENT_URL,
 
     
 
