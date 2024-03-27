@@ -179,7 +179,7 @@ const loginController = async (req, res) => {
           res
           .cookie("token", token,{
             sameSite: "none",
-            Secure: NODE_ENV==="production",
+            secure: NODE_ENV==="production",
             maxAge:2*3600*1000
        
 
