@@ -178,7 +178,7 @@ const loginController = async (req, res) => {
           // const oneHour = 3600000;
           res
           .cookie("token", token,{
-            sameSite: "lax",
+            sameSite: "None",
             secure: true,
        
             maxAge:  24 * 60 * 60 * 1000 // 1 día
@@ -190,7 +190,6 @@ const loginController = async (req, res) => {
               lastname: findUser.dataValues.lastname,
               message:`welcome back ${findUser.dataValues.firstname}`
             });
-
             return
         } else {
           res.cookie("token", token).json({
