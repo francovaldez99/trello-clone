@@ -178,7 +178,7 @@ const loginController = async (req, res) => {
           // const oneHour = 3600000;
           res
           .cookie("token", token,{
-            sameSite: "None",
+            sameSite: "Strict",
             secure: true,
             domain: ".onrender.com", // Cambiado el dominio aquí
             expires: new Date(Date.now() + 24 * 60 * 60 * 1000) // 1 día
