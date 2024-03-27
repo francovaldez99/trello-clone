@@ -173,7 +173,7 @@ const loginController = async (req, res) => {
         );
 
 
-
+console.log(NODE_ENV);
         if (NODE_ENV === "production") {
           // const oneHour = 3600000;
           res
