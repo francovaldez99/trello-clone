@@ -173,12 +173,12 @@ const loginController = async (req, res) => {
         );
 
 
-console.log(NODE_ENV);
+
         if (NODE_ENV === "production") {
           // const oneHour = 3600000;
           res
           .cookie("token", token,{
-            sameSite: "None",
+            sameSite: "none",
             Secure: true,
        
             maxAge:  24 * 60 * 60 * 1000 // 1 día
