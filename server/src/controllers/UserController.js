@@ -179,9 +179,9 @@ const loginController = async (req, res) => {
           res
           .cookie("token", token,{
             sameSite: "none",
-            secure: true,
+            secure: NODE_ENV==="production",
        
-            maxAge:  24 * 60 * 60 * 1000 // 1 día
+
           }).json({
               token,
               id: findUser.dataValues.id,
@@ -191,16 +191,17 @@ const loginController = async (req, res) => {
               message:`welcome back ${findUser.dataValues.firstname}`
             });
             return
-        } else {
-          res.cookie("token", token).json({
-            token,
-            id: findUser.dataValues.id,
-            email: findUser.dataValues.email,
-            firtsname: findUser.dataValues.firstname,
-            lastname: findUser.dataValues.lastname,
-            message:`welcome back ${findUser.dataValues.firstname}`
-          });
         }
+        //  else {
+        //   res.cookie("token", token).json({
+        //     token,
+        //     id: findUser.dataValues.id,
+        //     email: findUser.dataValues.email,
+        //     firtsname: findUser.dataValues.firstname,
+        //     lastname: findUser.dataValues.lastname,
+        //     message:`welcome back ${findUser.dataValues.firstname}`
+        //   });
+        // }
       }
     }
   } catch (error) {
