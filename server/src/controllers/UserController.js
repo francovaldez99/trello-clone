@@ -180,7 +180,7 @@ const loginController = async (req, res) => {
           .cookie("token", token, {
             sameSite:"None",
             secure:true,
-            domain:CLIENT_URL
+            domain:"trello-clone-client.onrender.com"
               
             }).json({
               token,
