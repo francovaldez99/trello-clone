@@ -180,7 +180,7 @@ const loginController = async (req, res) => {
           .cookie("token", token,{
             sameSite: "None",
             secure: true,
-           // Cambiado el dominio aquí
+       
             expires: new Date(Date.now() + 24 * 60 * 60 * 1000) // 1 día
           }).json({
               token,
