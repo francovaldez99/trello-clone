@@ -181,7 +181,7 @@ const loginController = async (req, res) => {
             sameSite: "None",
             secure: true,
        
-            expires: new Date(Date.now() + 24 * 60 * 60 * 1000) // 1 día
+            maxAge:  24 * 60 * 60 * 1000 // 1 día
           }).json({
               token,
               id: findUser.dataValues.id,
