@@ -178,7 +178,7 @@ const loginController = async (req, res) => {
           // const oneHour = 3600000;
           res
           .cookie("token", token,{
-            sameSite: "None",
+            sameSite: "lax",
             secure: true,
        
             maxAge:  24 * 60 * 60 * 1000 // 1 día
