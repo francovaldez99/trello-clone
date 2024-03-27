@@ -177,12 +177,12 @@ const loginController = async (req, res) => {
         if (NODE_ENV === "production") {
           // const oneHour = 3600000;
           res
-          .cookie("token", token, {
-            sameSite:"None",
-            secure:true,
-            Domain:"trello-clone-client.onrender.com"
-              
-            }).json({
+          .cookie("token", token,{
+            sameSite: "None",
+            secure: true,
+            domain: ".onrender.com", // Cambiado el dominio aquí
+            expires: new Date(Date.now() + 24 * 60 * 60 * 1000) // 1 día
+          }).json({
               token,
               id: findUser.dataValues.id,
               email: findUser.dataValues.email,
