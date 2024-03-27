@@ -180,7 +180,7 @@ const loginController = async (req, res) => {
           .cookie("token", token,{
             sameSite: "Strict",
             secure: true,
-            domain: ".onrender.com", // Cambiado el dominio aquí
+           // Cambiado el dominio aquí
             expires: new Date(Date.now() + 24 * 60 * 60 * 1000) // 1 día
           }).json({
               token,
