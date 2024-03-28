@@ -31,7 +31,7 @@ function App() {
           
           return
         }
-        localStorage.setItem('token', cookies.token);
+
         const verify=await verifyToken(cookies.token)
       // console.log("🚀 ~ file: App.jsx:25 ~ checkLogin ~ verify:", verify)
       dispatch(ChangeAuth(true))
