@@ -11,7 +11,7 @@ const NavBar = () => {
 
   const logout = () => {
     Cookies.remove("token");
-    localStorage.removeItem('token');
+    localStorage.removeItem('token')
     dispatch(removeUser())
   };
 
