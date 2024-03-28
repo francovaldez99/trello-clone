@@ -174,12 +174,12 @@ const loginController = async (req, res) => {
 
 
 
-        if (NODE_ENV === "production") {
+        
           // const oneHour = 3600000;
           res
           .cookie("token", token,{
             sameSite: "none",
-            secure: NODE_ENV==="production",
+            Secure: NODE_ENV==="production",
             maxAge:2*3600*1000
        
 
@@ -191,8 +191,7 @@ const loginController = async (req, res) => {
               lastname: findUser.dataValues.lastname,
               message:`welcome back ${findUser.dataValues.firstname}`
             });
-            return
-        }
+           
         //  else {
         //   res.cookie("token", token).json({
         //     token,
