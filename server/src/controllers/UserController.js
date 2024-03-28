@@ -181,7 +181,7 @@ const loginController = async (req, res) => {
             sameSite: "None",
             secure: NODE_ENV=="production",
             maxAge:2*3600*1000,
-            domain:"https://trello-clone-client.onrender.com"
+              
        
 
           }).json({
