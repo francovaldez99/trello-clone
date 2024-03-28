@@ -17,9 +17,11 @@ useEffect(() => {
       
     }
   }
+if(localStorage.getItem("token")){
 
   getBoards()
-}, [])
+}
+}, [localStorage.getItem("token")])
 
   return (
     <>
