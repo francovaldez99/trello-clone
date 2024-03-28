@@ -24,21 +24,21 @@ function App() {
      
       try {
         const cookies = await Cookies.get();
-        
-        if (!cookies.token) {
-          // console.log("🚀 ~ file: App.jsx:21 ~ checkLogin ~ cookies:", cookies)
+        const token = localStorage.getItem("token")
+        if (!token) {
+
           dispatch(ChangeAuth(false))
           
           return
         }
 
-        const verify=await verifyToken(cookies.token)
-      // console.log("🚀 ~ file: App.jsx:25 ~ checkLogin ~ verify:", verify)
+        const verify=await verifyToken(token)
+
       dispatch(ChangeAuth(true))
       dispatch(addUser(verify.data))
 
       } catch (error) {
-        // console.log("🚀 ~ file: App.jsx:34 ~ checkLogin ~ error:", error)
+
         
         dispatch(ChangeAuth(false))
      

@@ -3,7 +3,9 @@ const { TOKEN_SECRET } = require("../config/env");
 const User = require("../models/User.model");
 
 const authToken=(req,res,next)=>{
-  const token = req.cookies.token;
+  // const token = req.cookies.token;
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
 
   if(!token){
  res.status(401).json({message:"Unauthorized: No token provided"})
@@ -13,7 +15,7 @@ jwt.verify(token,TOKEN_SECRET,(err,decoded)=>{
             
 
                 if(err){
-                  // console.log("🚀 ~ file: authToken.js:15 ~ jwt.verify ~ err:", err)
+            
                   
                   return  res.status(401).json({message:"Unauthorized"})
                 }

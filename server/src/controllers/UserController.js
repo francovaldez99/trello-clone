@@ -174,16 +174,16 @@ const loginController = async (req, res) => {
 
 
 
-        
-          // const oneHour = 3600000;
-          res
-          .cookie("token", token,{
-            sameSite: "None",
-            secure: NODE_ENV=="production",
-
+        if(NODE_ENV==="production"){
+          // .cookie("token", token,{
+          //   sameSite: "None",
+          //   secure: true,
+  
        
-
-          }).json({
+  
+          // })
+          res
+          .json({
               token,
               id: findUser.dataValues.id,
               email: findUser.dataValues.email,
@@ -191,6 +191,18 @@ const loginController = async (req, res) => {
               lastname: findUser.dataValues.lastname,
               message:`welcome back ${findUser.dataValues.firstname}`
             });
+        }else {
+          res
+          .cookie("token", token).json({
+              token,
+              id: findUser.dataValues.id,
+              email: findUser.dataValues.email,
+              name: findUser.dataValues.name,
+              lastname: findUser.dataValues.lastname,
+              message:`welcome back ${findUser.dataValues.firstname}`
+            });
+        }
+          
 
       }
     }
@@ -202,7 +214,9 @@ const loginController = async (req, res) => {
 
 const verifyToken = async (req, res) => {
   try {
-    const token = req.cookies.token;
+    // const token = req.cookies.token;
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
     jwt.verify(token, TOKEN_SECRET, async (err, decoded) => {
       
       
