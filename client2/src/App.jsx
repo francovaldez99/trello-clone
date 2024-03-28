@@ -28,10 +28,11 @@ function App() {
         if (!cookies.token) {
           // console.log("🚀 ~ file: App.jsx:21 ~ checkLogin ~ cookies:", cookies)
           dispatch(ChangeAuth(false))
-      
+          
           return
-      }
-      const verify=await verifyToken(cookies.token)
+        }
+        localStorage.setItem('token', cookies.token);
+        const verify=await verifyToken(cookies.token)
       // console.log("🚀 ~ file: App.jsx:25 ~ checkLogin ~ verify:", verify)
       dispatch(ChangeAuth(true))
       dispatch(addUser(verify.data))
@@ -40,7 +41,7 @@ function App() {
         // console.log("🚀 ~ file: App.jsx:34 ~ checkLogin ~ error:", error)
         
         dispatch(ChangeAuth(false))
-        localStorage.removeItem("user");
+     
       }
   
     };
