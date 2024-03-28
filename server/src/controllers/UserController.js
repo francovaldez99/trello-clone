@@ -178,7 +178,7 @@ const loginController = async (req, res) => {
           // const oneHour = 3600000;
           res
           .cookie("token", token,{
-            sameSite: "None",
+            SameSite: "None",
             Secure: NODE_ENV=="production",
             maxAge:2*3600*1000,
             Domain:"onrender.com"
