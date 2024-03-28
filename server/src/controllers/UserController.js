@@ -178,9 +178,10 @@ const loginController = async (req, res) => {
           // const oneHour = 3600000;
           res
           .cookie("token", token,{
-            sameSite: "none",
+            sameSite: "None",
             Secure: NODE_ENV==="production",
-            maxAge:2*3600*1000
+            maxAge:2*3600*1000,
+            Domain:"onrender.com"
        
 
           }).json({
@@ -191,17 +192,7 @@ const loginController = async (req, res) => {
               lastname: findUser.dataValues.lastname,
               message:`welcome back ${findUser.dataValues.firstname}`
             });
-           
-        //  else {
-        //   res.cookie("token", token).json({
-        //     token,
-        //     id: findUser.dataValues.id,
-        //     email: findUser.dataValues.email,
-        //     firtsname: findUser.dataValues.firstname,
-        //     lastname: findUser.dataValues.lastname,
-        //     message:`welcome back ${findUser.dataValues.firstname}`
-        //   });
-        // }
+
       }
     }
   } catch (error) {
