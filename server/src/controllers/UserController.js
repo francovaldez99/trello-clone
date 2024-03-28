@@ -181,7 +181,7 @@ const loginController = async (req, res) => {
             sameSite: "None",
             secure: NODE_ENV=="production",
             maxAge:2*3600*1000,
-            Domain:"onrender.com"
+            domain:"onrender.com"
        
 
           }).json({
