@@ -27,7 +27,7 @@ function LoginForm() {
         dispatch(ChangeAuth(true))
         dispatch(addUser(res.data))
         localStorage.setItem('token', res.data.token);
-        console.log(res);
+        
         ///
         dispatch(setShowToast(true))
         dispatch(setToastMessage(res.data.message))

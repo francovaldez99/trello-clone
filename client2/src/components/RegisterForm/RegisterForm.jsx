@@ -69,13 +69,6 @@ useEffect(() => {
   }, [isAuthenticated])
 
   return (
-    //   <!--
-    //   Heads up! 👋
-
-    //   Plugins:
-    //     - @tailwindcss/forms
-    // -->
-
     
       
     

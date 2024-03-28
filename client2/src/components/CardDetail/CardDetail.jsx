@@ -27,7 +27,7 @@ function CardDetail({ SetCardDetailIsOpen ,taskname,cardDetailIsOpen,CardDetailI
   useEffect(()=>{
 const updatecoverCard=async()=>{
   try {
-    console.log(CardId);
+
 
 
     const {data}=await updateCoverCard(CardId,{
