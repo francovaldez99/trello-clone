@@ -9,6 +9,10 @@ const { CLIENT_URL } = require("./config/env")
  //middlewares
 console.log(CLIENT_URL);
 app.use(morgan("dev"))
+app.use((req, res, next) => {
+  console.log("Request Origin:", req.headers.origin);
+  next();
+})
 app.use(cookieParser())
  app.use(cors({
     credentials:true,
