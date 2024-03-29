@@ -4,16 +4,10 @@ import "quill/dist/quill.snow.css";
 import { useSelector, useDispatch } from "react-redux";
 import { getCardDetail } from "../../apí/cardDetail";
 
-function View({CardDetailId,setdisplayEditor}) {
-  
-  const { CardDetail } = useSelector((state) => state.cardDetail);
-  const { quill, quillRef } = useQuill({
-    readOnly: true,
+function View({CardDetailId,setdisplayEditor,dataText,setDataText}) {
 
-    modules: {
-      toolbar: false,
-    },
-  });
+  const { CardDetail } = useSelector((state) => state.cardDetail);
+ 
 
   useEffect(() => {
     async function fetchCardDetail() {
@@ -22,9 +16,9 @@ function View({CardDetailId,setdisplayEditor}) {
 
         if(data.content){
 
-          quill.setContents(JSON.parse(data.content));
+      setDataText(data.content)
         }else{
-        quill.setText('Insert\nDescrioption...\n');
+     
           setdisplayEditor(true)
         }
       } catch (error) {
@@ -34,17 +28,20 @@ function View({CardDetailId,setdisplayEditor}) {
     }
 
 
-if(quill){
+
 
   fetchCardDetail()
-}
-  }, [quill]);
+
+  }, []);
 
   return (
     <div className="h-[250px] p-2 border-none">
-      <article 
-      className="border-none"
-      ref={quillRef}></article>
+<p>
+{
+  dataText
+}
+</p>
+
     </div>
   );
 }

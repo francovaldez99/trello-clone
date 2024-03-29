@@ -18,12 +18,13 @@ import DropDownDeleteCover from "./DropDownDeleteCover"
 function CardDetail({ SetCardDetailIsOpen ,taskname,cardDetailIsOpen,CardDetailId,listname,CardId,idColumn,coverCard}) {
   const dispatch=useDispatch()
   const {boardDetail}=useSelector((state)=>state.allBoards)
-
   const [galleryIsOpen, SetGalleryIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
   const [displayEditor, setdisplayEditor] = useState(false);
   const [renameCardIsOpen,setRenameCardIsOpen]=useState(false);
   const [DropDownDeleteCoverIsOpen,SetDropDownDeleteCoverIsOpen]=useState(false)
+
+  const [dataText,setDataText]=useState("")
   useEffect(()=>{
 const updatecoverCard=async()=>{
   try {
@@ -39,24 +40,26 @@ const updatecoverCard=async()=>{
       coverCard:data.coverCard
     }))
 
-    
+
   } catch (error) {
     console.log("🚀 ~ updatecoverCard ~ error:", error)
     
   }
 }
-    
+    if(selectedImage!=""){
+
       updatecoverCard()
+    }
     
   },[selectedImage])
 
   useEffect(() => {
     const getCoverImage = ()=>{
-      console.log(boardDetail.Columns);
-      console.log(idColumn);
+      // console.log(boardDetail.Columns);
+      // console.log(idColumn);
 
       let indexCol = boardDetail.Columns.findIndex((col)=>col.id===idColumn)
-      console.log("🚀 ~ getCoverImage ~ indexCol:", indexCol)
+      // console.log("🚀 ~ getCoverImage ~ indexCol:", indexCol)
 
       
       let indexCard =boardDetail.Columns[indexCol].Cards.findIndex((card)=>card.id===CardId)
@@ -64,8 +67,9 @@ const updatecoverCard=async()=>{
         return 
       }
       let updateCoverImage=boardDetail.Columns[indexCol].Cards[indexCard].coverCard 
+      // console.log("🚀 ~ getCoverImage ~ updateCoverImage:", updateCoverImage)
     
-      if(updateCoverImage!=""){
+      if(updateCoverImage!==""){
 
         setSelectedImage(updateCoverImage)
       }
@@ -76,6 +80,7 @@ const updatecoverCard=async()=>{
     }
 
   }, [boardDetail])
+
   const handleDeleteCard=async()=>{
     try {
       
@@ -105,7 +110,7 @@ const updatecoverCard=async()=>{
            
                <div className="w-full ">
                <img
-                src={coverCard }
+                src={ selectedImage || coverCard }
                 
                 className={` max-h-[230px] w-full rounded-[8px]  object-cover`}
                 />
@@ -178,14 +183,18 @@ const updatecoverCard=async()=>{
             </div>
     
           </div>
-          <div className="h-[300px]">
-            {/* {
+          <div className="h-[300px] mt-[10px] p-2">
+            {
                 displayEditor ? (<Editor
                    setdisplayEditor={setdisplayEditor}
-                   CardDetailId={CardDetailId}/>
+                   CardDetailId={CardDetailId}
+                   dataText={dataText}
+                   setDataText={setDataText}/>
                 
-                ):(<View CardDetailId={CardDetailId} setdisplayEditor={setdisplayEditor}/>)
-            } */}
+                ):(<View CardDetailId={CardDetailId} setdisplayEditor={setdisplayEditor}
+                  dataText={dataText}
+                  setDataText={setDataText}/>)
+            }
           </div>
 
             <Modal isOpen={galleryIsOpen}>
