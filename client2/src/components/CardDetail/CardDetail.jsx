@@ -112,7 +112,7 @@ const updatecoverCard=async()=>{
                <img
                 src={ selectedImage || coverCard }
                 
-                className={` max-h-[230px] w-full rounded-[8px] `}
+                className={` max-h-[230px] w-full rounded-[8px]  `}
                 />
                 <div className="absolute top-0 left-[5px] " 
                 onDoubleClick={()=>SetDropDownDeleteCoverIsOpen(false)}
