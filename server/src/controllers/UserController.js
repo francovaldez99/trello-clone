@@ -241,6 +241,7 @@ const verifyToken = async (req, res) => {
             email: result.dataValues.email,
             firstname: result.dataValues.firstname,
             lastname: result.dataValues.lastname,
+            token
           });
         }else{
         return  res.status(401).json({message:"Unauthorized"})

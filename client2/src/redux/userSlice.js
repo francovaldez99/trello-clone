@@ -7,18 +7,19 @@ const initialState={
     isAuthenticated:false,
     showToast:"",
     toastMessage:"",
-    toastType:""
+    toastType:"",
+    token:localStorage.getItem("token") || ""
 }
 const userSlice =createSlice({
     name:"user",
     initialState:initialState,
     reducers:{
         addUser:(state,action)=>{
-            const {firtsname,lastname,email}=action.payload
+            const {firtsname,lastname,email,token}=action.payload
             state.firtsname=firtsname;
             state.lastname=lastname;
             state.email=email;
-             
+             state.token=token
         },
         ChangeAuth:(state,action)=>{
             state.isAuthenticated=action.payload
@@ -27,7 +28,8 @@ const userSlice =createSlice({
             state.firtsname="";
             state.lastname="";
             state.email="";
-            state.isAuthenticated=""
+            state.isAuthenticated="";
+            state.token=""
         },
         setShowToast:(state,action)=>{
             state.showToast=action.payload
