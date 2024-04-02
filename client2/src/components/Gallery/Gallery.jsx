@@ -80,11 +80,11 @@ const [searching,setSeaching]=useState(false)
         {images.length && !searching ?  images.map((image, indexImage) => (
           <img
             key={image.id}
-            src={image.urls.small}
+            src={image.urls.thumb }
             alt={image.alt_description}
-            onClick={() => handleImageClick(image.urls.small)}
-            className={`${selectedImage === image.urls.small ? "border-4  border-blue-500" : ""} object-contain h-[150px]`}
-            onDoubleClick={()=>{onSelect(image.urls.small);SetGalleryIsOpen(false)}}
+            onClick={() => handleImageClick(image.urls.thumb )}
+            className={`${selectedImage === image.urls.thumb  ? "border-4  border-blue-500" : ""} object-contain h-[150px]`}
+            onDoubleClick={()=>{onSelect(image.urls.thumb);SetGalleryIsOpen(false)}}
           />
         )): <div className='h-[329px] w-[427px] relative'>
           <div className='mx-auto absolute top-0 bottom-0 left-0 right-0 flex flex-col justify-center items-center '>

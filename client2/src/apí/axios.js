@@ -6,7 +6,6 @@ const token =store?.getState()?.user?.token || localStorage.getItem("token");
 
 const axiosInstance=axios.create({
     baseURL:URL_SERVER,
-
    headers: {
     Authorization: token ? `Bearer ${token}` : '', 
 }
