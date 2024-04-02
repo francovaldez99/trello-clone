@@ -15,8 +15,6 @@ function RegisterPage() {
               <li className="mb-2">Easy-to-use task management interface</li>
               <li className="mb-2">Customizable boards and lists</li>
               <li className="mb-2">Drag-and-drop functionality for effortless task organization</li>
-              <li className="mb-2">Collaboration tools for seamless team communication</li>
-              <li className="mb-2">Integration with popular productivity apps</li>
               <li className="mb-2">Cross-platform synchronization for access anywhere, anytime</li>
             </ul>
             <p className="text-lg mt-6 text-blue-800">
