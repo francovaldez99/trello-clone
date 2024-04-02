@@ -13,6 +13,9 @@ useEffect(() => {
       dispatch(setAllBoards(data))
       // setAllBoard(data)
     } catch (error) {
+      if(localStorage.getItem("token")){
+        window.location.reload();
+      }
       console.log("🚀 ~ file: AllBoards.jsx:14 ~ getBoards ~ error:", error)
       
     }
