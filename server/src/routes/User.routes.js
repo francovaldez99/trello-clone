@@ -10,8 +10,9 @@ UserRouter.post('/logout', (req, res) => {
     
     try {
         req.user = null;
+        res.setHeader('Authorization', '');
         res.json({ message: 'Logout successful' });
-        
+
     } catch (error) {
         res.status(500).json({message:"something went wrong"})
     }
