@@ -8,6 +8,14 @@ const allBoardsSlice = createSlice({
   name: "allBoards",
   initialState: initialState,
   reducers: {
+    removeAllBoards:(state,action)=>{
+
+      state.allBoards=[];
+      state.boardDetail={};
+      localStorage.removeItem('token')
+   console.log(state.allBoards);
+console.log(state.boardDetail);
+    },
     setAllBoards: (state, action) => {
       state.allBoards = action.payload;
     },
@@ -164,6 +172,6 @@ const allBoardsSlice = createSlice({
   },
 });
 
-export const { setAllBoards, setBoardDetail, updateBoardOrder,newColBoard ,newCard,newCoverCard,updateColName,deleteColumnAction,updateCardName,deleteCard} =
+export const { setAllBoards, setBoardDetail, updateBoardOrder,newColBoard ,newCard,newCoverCard,updateColName,deleteColumnAction,updateCardName,deleteCard,removeAllBoards} =
   allBoardsSlice.actions;
 export default allBoardsSlice.reducer;

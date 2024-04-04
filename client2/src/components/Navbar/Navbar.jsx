@@ -4,15 +4,25 @@ import Cookies from "js-cookie";
 import { removeUser } from '../../redux/userSlice';
 import { useSelector,useDispatch } from 'react-redux';
 import logo from "../../assets/logo.jpg"
+import {logoutserver } from "../../apí/user"
+import { removeAllBoards } from '../../redux/allBoardsSlice';
 const NavBar = () => {
     const dispatch=useDispatch()
     const {isAuthenticated,email }=useSelector((state)=>state.user) 
 
 
-  const logout = () => {
-    Cookies.remove("token");
-    localStorage.removeItem('token')
-    dispatch(removeUser())
+  const logout =async () => {
+    
+    
+    try {
+    
+      localStorage.removeItem('token')
+      dispatch(removeUser())
+      dispatch(removeAllBoards())
+      await logoutserver()
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

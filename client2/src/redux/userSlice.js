@@ -28,8 +28,9 @@ const userSlice =createSlice({
             state.firtsname="";
             state.lastname="";
             state.email="";
-            state.isAuthenticated="";
+            state.isAuthenticated=false;
             state.token=""
+            localStorage.removeItem('token')
         },
         setShowToast:(state,action)=>{
             state.showToast=action.payload

@@ -24,7 +24,7 @@ useEffect(() => {
 
   getBoards()
 
-}, [localStorage.getItem("token")])
+}, [])
 
   return (
     <>

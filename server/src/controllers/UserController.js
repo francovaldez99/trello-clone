@@ -175,13 +175,7 @@ const loginController = async (req, res) => {
 
 
         if(NODE_ENV==="production"){
-          // .cookie("token", token,{
-          //   sameSite: "None",
-          //   secure: true,
   
-       
-  
-          // })
           res
           .json({
               token,

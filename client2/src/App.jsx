@@ -23,7 +23,7 @@ function App() {
     const checkLogin = async () => {
      
       try {
-        const cookies = await Cookies.get();
+        // const cookies = await Cookies.get();
         const token = localStorage.getItem("token")
         if (!token) {
 
@@ -39,6 +39,9 @@ function App() {
 
       } catch (error) {
 
+    
+    
+        localStorage.removeItem('token')
         
         dispatch(ChangeAuth(false))
      
