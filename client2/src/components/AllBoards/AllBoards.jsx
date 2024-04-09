@@ -5,6 +5,7 @@ import {useDispatch , useSelector} from "react-redux"
 import { setAllBoards } from '../../redux/allBoardsSlice';
 function AllBoards() {
 const {allBoards}=useSelector((state)=>state.allBoards)
+
 const dispatch=useDispatch()
 useEffect(() => {
   async function getBoards() {

@@ -148,7 +148,7 @@ const loginController = async (req, res) => {
     if (!findUser) {
       return res.status(400).json({ message: "User not found." });
     } else {
-      //comparar contraseñas de la base de datos con la ingresada en el body
+    
 
       const passwordIsMatch = await bcrypt.compare(
         password,
@@ -159,7 +159,7 @@ const loginController = async (req, res) => {
         return res.status(401).json({ message: "incorrect password." });
       } else {
         //aqui la logica para dar un token al usuario
-        const token = await jwt.sign(
+        const token =  jwt.sign(
           {
             id: findUser.dataValues.id,
             email: findUser.dataValues.email,
@@ -172,8 +172,13 @@ const loginController = async (req, res) => {
           }
         );
 
-
-
+        req.user= {
+          id: findUser.dataValues.id,
+          email: findUser.dataValues.email,
+          firstname: findUser.dataValues.firstname,
+          lastname: findUser.dataValues.lastname,
+        }
+console.log(req.user,"holaaa");
         if(NODE_ENV==="production"){
   
           res
@@ -202,6 +207,7 @@ const loginController = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
+    req.user={}
     res.status(400).json({ message: "Something went wrong :(" });
   }
 };
@@ -215,6 +221,7 @@ const verifyToken = async (req, res) => {
       
       
       if(!decoded){
+        req.user=null
         
         return  res.status(401).json({message:"Unauthorized"})
       
@@ -238,12 +245,14 @@ const verifyToken = async (req, res) => {
             token
           });
         }else{
+          req.user=null
         return  res.status(401).json({message:"Unauthorized"})
 
         }
       })
       .catch((error)=>{
         console.log(error);
+        req.user=null
         return  res.status(401).json({message:"Unauthorized"})
 
       })
@@ -255,12 +264,32 @@ const verifyToken = async (req, res) => {
       
     });
   } catch (error) {
+    req.use={}
     res.status(401).json({ message: "Unauthorized" });
   }
 };
 
+
+
+const logoutController=(req, res) => {
+
+    
+  res.setHeader('Authorization', '');
+  req.user = {};
+
+  try {
+
+      res.json({ message: 'Logout successful' });
+
+  } catch (error) {
+
+
+      res.status(500).json({message:"something went wrong"})
+  }
+}
 module.exports = {
   registerController,
   loginController,
   verifyToken,
+  logoutController
 };

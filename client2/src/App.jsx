@@ -9,7 +9,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import RegisterPage from './pages/registerPage/RegisterPage';
 import { useSelector,useDispatch } from 'react-redux';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
-import { ChangeAuth, addUser } from './redux/userSlice';
+import { ChangeAuth, addUser, removeUser } from './redux/userSlice';
 import { verifyToken } from './apí/user';
 import NavBar from './components/Navbar/Navbar';
 import AllBoardsPage from './pages/AllBoardsPage/AllBoardsPage';
@@ -28,7 +28,8 @@ function App() {
         if (!token) {
 
           dispatch(ChangeAuth(false))
-          
+          dispatch(removeUser())
+          localStorage.removeItem('token')
           return
         }
 
@@ -40,10 +41,10 @@ function App() {
       } catch (error) {
 
     
-    
+        dispatch(removeUser())
+        dispatch(ChangeAuth(false))
         localStorage.removeItem('token')
         
-        dispatch(ChangeAuth(false))
      
       }
   

@@ -8,6 +8,8 @@ const authToken=(req,res,next)=>{
   const token = authHeader && authHeader.split(' ')[1];
 
   if(!token){
+    req.user=null
+
  res.status(401).json({message:"Unauthorized: No token provided"})
   }else{
   
@@ -16,13 +18,14 @@ jwt.verify(token,TOKEN_SECRET,(err,decoded)=>{
 
                 if(err){
             
+          req.user=null
                   
                   return  res.status(401).json({message:"Unauthorized"})
                 }
            
                 User.findByPk(decoded.id)
                 .then((result)=>{
-// console.log(result);
+
                   if(result){
 
                     req.user= {
@@ -39,6 +42,8 @@ jwt.verify(token,TOKEN_SECRET,(err,decoded)=>{
                 })
                 .catch((error)=>{
                   // console.log(error);
+          req.user=null
+
                   return  res.status(401).json({message:"Unauthorized"})
 
                 })

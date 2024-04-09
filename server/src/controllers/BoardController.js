@@ -27,6 +27,7 @@ const createNewBoard=async(req,res)=>{
     res.status(200).json(allBoards)
   } catch (error) {
     console.log("🚀 ~ getAllBoards ~ error:", error)
+    req.user=null
   
     res.status(500).json({message:error.message})
   }
@@ -39,8 +40,9 @@ try {
   if (!req.user || !req.user.id) {
     throw new Error('Unauthorized');
   }
+ 
     const allBoards=await Board.findAll({
-        where:{UserId:req.user.id},
+        where:{ UserId:req.user.id },
      
     })
     
@@ -54,6 +56,7 @@ try {
 } 
 catch (error) {
   console.log("🚀 ~ getAllBoards ~ error:", error)
+  req.user=null
   
     res.status(500).json({message:error.message})
     return
@@ -83,6 +86,8 @@ try {
     }
     res.status(200).json(findBoard)
 } catch (error) {
+  req.user=null
+
     console.log("🚀 ~ file: BoardController.js:30 ~ getBoardById ~ error:", error)
     res.status(500).json({message:error.message})
     
@@ -130,6 +135,7 @@ for (let index = 0; index < data.Columns.length; index++) {
         
      
       } catch (error) {
+        
         console.log("🚀 ~ updateCard ~ error:", error)
         
       }
@@ -144,6 +150,7 @@ for (let index = 0; index < data.Columns.length; index++) {
   res.status(200).send("updated column")
 } catch (error) {
   console.log("🚀 ~ updateBoard ~ error:", error)
+  req.user=null
   
   res.status(500).json({message:error.message})
 }
