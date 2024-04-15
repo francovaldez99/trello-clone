@@ -12,10 +12,10 @@ const sequelize = new Sequelize(
         rejectUnauthorized: false 
       }
     } ,pool: {
-      max: 10, // Número máximo de conexiones en el pool
-      min: 0, // Número mínimo de conexiones en el pool
-      acquire: 30000, // Tiempo máximo (en milisegundos) para adquirir una conexión
-      idle: 10000 // Tiempo máximo (en milisegundos) que una conexión puede estar inactiva en el pool
+      max: 20, // Ajusta según tu necesidad
+      min: 5, // Ajusta según tu necesidad
+      acquire: 30000, // Milisegundos antes de que una solicitud de adquisición falle
+      idle: 10000 // Milisegundos antes de que una conexión inactiva sea liberada
     }
   }
 );
