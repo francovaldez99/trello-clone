@@ -10,7 +10,7 @@
 - 📝 **Listas personalizadas** — Organiza tus tareas en columnas según tu flujo de trabajo
 - 🃏 **Tarjetas de tareas** — Crea, edita y elimina tareas dentro de cada lista
 - 🖱️ **Drag & Drop** — Arrastra y suelta tarjetas entre listas de forma intuitiva
-- 🔐 **Autenticación** — Sistema de login seguro con JWT y Passport.js
+- 🔐 **Autenticación** — Sistema de login seguro con JWT
 - ✏️ **Editor de texto enriquecido** — Descripción de tareas con Quill editor
 
 ---
