@@ -10,7 +10,8 @@
 - 📝 **Listas personalizadas** — Organiza tus tareas en columnas según tu flujo de trabajo
 - 🃏 **Tarjetas de tareas** — Crea, edita y elimina tareas dentro de cada lista
 - 🖱️ **Drag & Drop** — Arrastra y suelta tarjetas entre listas de forma intuitiva
-- 🧑‍💻 **Interfaz amigable** — UI limpia y simple, fácil de usar desde el primer momento
+- 🔐 **Autenticación** — Sistema de login seguro con JWT y Passport.js
+- ✏️ **Editor de texto enriquecido** — Descripción de tareas con Quill editor
 
 ---
 
@@ -19,17 +20,24 @@
 ### Frontend (`client2`)
 | Tecnología | Descripción |
 |---|---|
-| **React** | Librería principal para la UI |
-| **JavaScript** | Lenguaje principal |
-| **CSS** | Estilos y maquetación |
+| **React 18** | Librería principal para la UI |
+| **Vite** | Bundler y entorno de desarrollo |
+| **Redux Toolkit** | Manejo del estado global |
+| **React Router DOM** | Navegación entre vistas |
+| **Tailwind CSS** | Estilos utilitarios |
+| **@hello-pangea/dnd** | Drag & Drop de tarjetas |
+| **Axios** | Cliente HTTP para consumir la API |
+| **Quill** | Editor de texto enriquecido |
 
 ### Backend (`server`)
 | Tecnología | Descripción |
 |---|---|
 | **Node.js** | Entorno de ejecución del servidor |
 | **Express** | Framework para la API REST |
-| **MongoDB** | Base de datos NoSQL |
-| **Mongoose** | ODM para MongoDB |
+| **Sequelize** | ORM para la base de datos |
+| **SQLite3** | Base de datos relacional embebida |
+| **JWT** | Autenticación mediante tokens |
+| **bcrypt** | Hash de contraseñas |
 
 ---
 
@@ -37,10 +45,8 @@
 
 ### Prerrequisitos
 
-Asegúrate de tener instalados:
 - [Node.js](https://nodejs.org/) (v14 o superior)
 - [npm](https://www.npmjs.com/)
-- [MongoDB](https://www.mongodb.com/) (local o Atlas)
 
 ### 1. Clonar el repositorio
 
@@ -56,11 +62,11 @@ cd server
 npm install
 ```
 
-Crea un archivo `.env` en la carpeta `server` con las siguientes variables:
+Crea un archivo `.env` en la carpeta `server`:
 
 ```env
 PORT=5000
-MONGO_URI=mongodb://localhost:27017/tasksync
+JWT_SECRET=tu_clave_secreta
 ```
 
 Inicia el servidor:
@@ -78,10 +84,10 @@ Abre una nueva terminal:
 ```bash
 cd client2
 npm install
-npm start
+npm run dev
 ```
 
-> La aplicación estará disponible en `http://localhost:3000`
+> La aplicación estará disponible en `http://localhost:5173`
 
 ---
 
@@ -89,8 +95,8 @@ npm start
 
 ```
 trello-clone/
-├── client2/        # Frontend React
-├── server/         # Backend Node.js + Express
+├── client2/        # Frontend React + Vite
+├── server/         # Backend Node.js + Express + SQLite
 └── README.md
 ```
 
