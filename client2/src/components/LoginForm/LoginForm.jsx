@@ -79,7 +79,10 @@ function LoginForm() {
         </h1>
         
         {/* Formulario de inicio de sesión */}
-        <form onSubmit={handleSubmit} className="mt-8 grid grid-cols-6 gap-6">
+        <div className="mt-4 rounded-md border border-yellow-300 bg-yellow-50 px-4 py-2 text-sm text-yellow-800">
+          <span className="font-medium">Test credentials:</span> test@test.com / test1234
+        </div>
+        <form onSubmit={handleSubmit} className="mt-4 grid grid-cols-6 gap-6">
           {/* Email */}
           <div className="col-span-6">
             <label
